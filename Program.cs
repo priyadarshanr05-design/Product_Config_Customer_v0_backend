@@ -1,0 +1,144 @@
+using DotNetEnv;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Product_Config_Customer_v0.Data;
+using Product_Config_Customer_v0.Data.Seeders;
+using Product_Config_Customer_v0.Repositories;
+using Product_Config_Customer_v0.Repositories.Interfaces;
+using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Shared;
+using Product_Config_Customer_v0.Workers;
+using System.Net;
+using System.Text;
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Load the default .env file (if present)
+Env.Load();
+
+// Load environment-specific .env file
+if (builder.Environment.IsDevelopment())
+{
+    Env.Load(".env.development");
+}
+else if (builder.Environment.IsProduction())
+{
+    Env.Load(".env.production");
+}
+
+// Optional: log environment
+Console.WriteLine($"Running in {builder.Environment.EnvironmentName} mode!");
+
+
+// Make environment variables override appsettings.json
+builder.Configuration
+       .AddEnvironmentVariables();
+
+// Register IHttpContextAccessor first
+builder.Services.AddHttpContextAccessor();
+
+// Add custom application services (TenantProvider, repositories, JWT service, etc.)
+builder.Services.AddCustomServices(builder.Configuration);
+
+// Add DbContexts (default for migrations, tenant DbContext configured later)
+builder.Services.AddDbContext<DomainManagementDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DomainManagementDb"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DomainManagementDb"))
+    )
+);
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+// JWT Authentication
+var jwtSettings = builder.Configuration.GetSection("Jwt");
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings["Issuer"],
+            ValidAudience = jwtSettings["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!))
+        };
+    });
+
+// Swagger with JWT
+builder.Services.AddSwaggerWithJwt();
+
+// CORS and HttpClient
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+});
+builder.Services.AddHttpClient();
+builder.Services.AddMemoryCache();
+
+// Configure multi-tenant DbContext per request
+builder.Services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
+{
+    var tenantProvider = serviceProvider.GetRequiredService<IUser_Login_TenantProvider>();
+    var dbResolver = serviceProvider.GetRequiredService<IUser_Login_DatabaseResolver>();
+
+    var tenant = tenantProvider.TenantKey ?? "Default";
+
+    if (!dbResolver.TryGetConnectionString(tenant, out var connString))
+        throw new Exception($"Unknown tenant {tenant}");
+
+    options.UseMySql(connString, ServerVersion.AutoDetect(connString));
+});
+
+var app = builder.Build();
+
+// Middleware
+var enableSwaggerInProd = Environment.GetEnvironmentVariable("ENABLE_SWAGGER") == "true";
+
+if (app.Environment.IsDevelopment() || enableSwaggerInProd)
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
+}
+
+
+//app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseCors("AllowAll");
+app.MapControllers();
+
+// Run migrations and seed databases
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var config = services.GetRequiredService<IConfiguration>();
+    var userSeeder = services.GetRequiredService<UserSeeder>();
+    var domainDb = services.GetRequiredService<DomainManagementDbContext>();
+
+    // 9a. DomainManagementDbContext migration & seeding
+    await domainDb.Database.MigrateAsync();
+    
+    // 9b. Multi-tenant user databases
+    var tenantDbNames = config.GetSection("SeedDatabases").Get<string[]>() ?? Array.Empty<string>();
+    foreach (var dbName in tenantDbNames)
+    {
+        var connString = config.GetConnectionString(dbName);
+        var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+        optionsBuilder.UseMySql(connString, ServerVersion.AutoDetect(connString));
+
+        using var tenantDb = new ApplicationDbContext(optionsBuilder.Options);
+        await tenantDb.Database.MigrateAsync();
+        await userSeeder.SeedAsync(tenantDb);
+    }
+}
+
+app.Run();
