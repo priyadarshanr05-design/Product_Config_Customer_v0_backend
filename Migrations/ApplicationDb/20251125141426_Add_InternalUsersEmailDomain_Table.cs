@@ -33,8 +33,8 @@ namespace Product_Config_Customer_v0.Migrations.ApplicationDb
                 columns: new[] { "Id", "EmailDomain" },
                 values: new object[,]
                 {
-                    { 1, "{domain}.com" },
-                    { 2, "visualallies.com" }
+                    { 1, "visualallies.com" },
+                    { 2, "domain.com" }
                 });
         }
 

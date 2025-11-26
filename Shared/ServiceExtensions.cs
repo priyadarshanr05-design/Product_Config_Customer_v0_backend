@@ -14,9 +14,9 @@ namespace Product_Config_Customer_v0.Shared
         public static IServiceCollection AddCustomServices(this IServiceCollection services, IConfiguration config)
         {
             // Scoped services
-            services.AddScoped<IUser_Login_TenantProvider, User_Login_TenantProvider>();
-            services.AddScoped<IUser_Login_DatabaseResolver, User_Login_DatabaseResolver>();
-            services.AddScoped<IUser_Login_Service, User_Login_Service>();
+            services.AddScoped<IUser_Login_TenantProvider, User_03_Login_TenantProvider>();
+            services.AddScoped<IUser_Login_DatabaseResolver, User_03_Login_DatabaseResolver>();
+            
 
             services.AddScoped<IRequestModelRepository>(sp =>
             {
@@ -31,20 +31,36 @@ namespace Product_Config_Customer_v0.Shared
             services.AddScoped<ParentAPI_01_GenToken_Service>();
 
             // Singletons
-            services.AddSingleton<User_Login_Jwt_Token_Service>();
+            
             services.AddSingleton<IBackgroundJobQueue, BackgroundJobQueue>();
             services.AddHostedService<ParentAPI_ProcessRequest_Worker>();
             services.AddScoped<UserSeeder>();
             services.AddScoped<DomainAdminUserSeeder>();
 
-            services.AddScoped<Domain_02_Add_Service>();
-            services.AddScoped<Domain_03_Delete_Service>();
-            services.AddScoped<Domain_01_AdminLogin_Service>();
+            services.AddScoped<User_01_Register_Service>();
+            services.AddScoped<User_02_Verification_Service>();
+            services.AddScoped<User_03_Login_Service>();
+            services.AddScoped<User_04_ForgetPassword_Service>();
+            services.AddScoped<User_05_Account_Delete_Service>();
 
-            services.AddScoped<Users_06_InternalEmailDomain_Add_Service>();
-            services.AddScoped<Users_09_InternalEmailDomain_Delete_Service>();
-            services.AddScoped<Users_07_InternalEmailDomain_Read_Service>();
-            services.AddScoped<Users_08_InternalEmailDomain_Update_Service>();
+
+            services.AddSingleton<User_03_Login_Jwt_Token_Service>();
+
+            services.AddScoped<Domain_01_AdminLogin_Service>();
+            services.AddScoped<Domain_02_Add_Service>();
+            services.AddScoped<Domain_03_Read_Service>(); 
+            services.AddScoped<Domain_04_Update_Service>();
+            services.AddScoped<Domain_05_Delete_Service>();            
+
+            services.AddScoped<Users_01_InternalEmailDomain_Add_Service>();            
+            services.AddScoped<Users_02_InternalEmailDomain_Read_Service>();
+            services.AddScoped<Users_03_InternalEmailDomain_Update_Service>();
+            services.AddScoped<Users_04_InternalEmailDomain_Delete_Service>();
+            services.AddScoped<Users_05_InternalEmailDomain_Check_Service>();
+
+            services.AddScoped<FeaturePage_01_Service>();
+            
+                
 
             // Transient services
             services.AddTransient<IEmailSender, SmtpEmailSender>();

@@ -14,7 +14,7 @@ public class Domain_01_AdminLogin_Controller : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(Domain_01_AdminLogin req)
+    public async Task<IActionResult> Login(Domain_01_AdminLogin_DTO req)
     {
         var token = await _service.LoginAsync(req);
         if (token == null) return Unauthorized("Invalid credentials");

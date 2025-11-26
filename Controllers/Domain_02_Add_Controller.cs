@@ -15,7 +15,7 @@ public class Domain_02_Add_Controller : ControllerBase
     }
 
     [HttpPost("add")]
-    public async Task<IActionResult> AddDomain(Domain_02_Add request)
+    public async Task<IActionResult> AddDomain(Domain_02_Add_DTO request)
     {
         var result = await _service.AddDomainAsync(request);
 

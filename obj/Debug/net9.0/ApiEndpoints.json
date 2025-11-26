@@ -9,14 +9,14 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_02_Add",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_02_Add_DTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Domain_03_Delete_Controller",
+    "ContainingType": "Domain_05_Delete_Controller",
     "Method": "DeleteDomain",
     "RelativePath": "api/admin/domain/delete",
     "HttpMethod": "DELETE",
@@ -25,7 +25,33 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_03_Delete",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_05_Delete_DTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Domain_03_Read_Controller",
+    "Method": "GetDomains",
+    "RelativePath": "api/admin/domain/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Domain_04_Update_Controller",
+    "Method": "UpdateDomain",
+    "RelativePath": "api/admin/domain/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_04_Update",
         "IsRequired": true
       }
     ],
@@ -41,14 +67,62 @@
     "Parameters": [
       {
         "Name": "req",
-        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_01_AdminLogin",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_01_AdminLogin_DTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Users_06_InternalEmailDomain_Add_Controller",
+    "ContainingType": "User_03_Login_Controller",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Product_Config_Customer_v0.Models.DTO.User_03_Login_Request_DTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "User_01_Register_Controller",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Product_Config_Customer_v0.DTO.User_01_Register_Request_DTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FeaturePage_01_Controller",
+    "Method": "GetFeature",
+    "RelativePath": "api/feature/01/get",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tenantDomain",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Users_01_InternalEmailDomain_Add_Controller",
     "Method": "AddDomains",
     "RelativePath": "api/internalemaildomain/add",
     "HttpMethod": "POST",
@@ -57,14 +131,30 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Product_Config_Customer_v0.DTO.Users_06_InternalEmailDomain_Add_DTO",
+        "Type": "Product_Config_Customer_v0.DTO.Users_01_InternalEmailDomain_Add_DTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Users_09_InternalEmailDomain_Delete_Controller",
+    "ContainingType": "Users_05_InternalEmailDomain_Check_Controller",
+    "Method": "Check",
+    "RelativePath": "api/internalemaildomain/check",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Product_Config_Customer_v0.DTO.Users_05_InternalEmailDomain_Check_DTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Users_04_InternalEmailDomain_Delete_Controller",
     "Method": "DeleteDomains",
     "RelativePath": "api/internalemaildomain/delete",
     "HttpMethod": "POST",
@@ -73,14 +163,14 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Product_Config_Customer_v0.DTO.Users_09_InternalEmailDomain_Delete_DTO",
+        "Type": "Product_Config_Customer_v0.DTO.Users_04_InternalEmailDomain_Delete_DTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Users_07_InternalEmailDomain_Read_Controller",
+    "ContainingType": "Users_02_InternalEmailDomain_Read_Controller",
     "Method": "ReadDomains",
     "RelativePath": "api/internalemaildomain/read",
     "HttpMethod": "POST",
@@ -89,14 +179,14 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Product_Config_Customer_v0.DTO.Users_07_InternalEmailDomain_Read_DTO",
+        "Type": "Product_Config_Customer_v0.DTO.Users_02_InternalEmailDomain_Read_DTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Users_08_InternalEmailDomain_Update_Controller",
+    "ContainingType": "Users_03_InternalEmailDomain_Update_Controller",
     "Method": "UpdateDomains",
     "RelativePath": "api/internalemaildomain/update",
     "HttpMethod": "POST",
@@ -105,7 +195,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Product_Config_Customer_v0.DTO.Users_08_InternalEmailDomain_Update_DTO",
+        "Type": "Product_Config_Customer_v0.DTO.Users_03_InternalEmailDomain_Update_DTO",
         "IsRequired": true
       }
     ],
@@ -159,7 +249,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "User_04_ForgetPassword_Controller",
+    "ContainingType": "Product_Config_Customer_v0.Controllers.User_04_ForgetPassword_Controller",
     "Method": "RequestReset",
     "RelativePath": "api/user/forgetpassword/request",
     "HttpMethod": "POST",
@@ -168,14 +258,14 @@
     "Parameters": [
       {
         "Name": "req",
-        "Type": "Product_Config_Customer_v0.Models.User_ForgetPassword_Request",
+        "Type": "Product_Config_Customer_v0.DTO.User_04_ForgetPassword_Request_DTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "User_04_ForgetPassword_Controller",
+    "ContainingType": "Product_Config_Customer_v0.Controllers.User_04_ForgetPassword_Controller",
     "Method": "ResetPassword",
     "RelativePath": "api/user/forgetpassword/reset",
     "HttpMethod": "POST",
@@ -184,39 +274,7 @@
     "Parameters": [
       {
         "Name": "req",
-        "Type": "Product_Config_Customer_v0.Models.User_ForgetPassword_Reset",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "User_03_Login_Controller",
-    "Method": "Login",
-    "RelativePath": "api/user/login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "req",
-        "Type": "Product_Config_Customer_v0.Models.User_Login",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Product_Config_Customer_v0.Controllers.User_01_Registration_Controller",
-    "Method": "Register",
-    "RelativePath": "api/user/register",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "req",
-        "Type": "Product_Config_Customer_v0.Models.User_Registration",
+        "Type": "Product_Config_Customer_v0.DTO.User_04_ForgetPassword_Reset_DTO",
         "IsRequired": true
       }
     ],
@@ -232,7 +290,7 @@
     "Parameters": [
       {
         "Name": "req",
-        "Type": "Product_Config_Customer_v0.Models.User_Verification",
+        "Type": "Product_Config_Customer_v0.Models.DTO.User_02_Verification_Request_DTO",
         "IsRequired": true
       }
     ],

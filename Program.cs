@@ -110,6 +110,7 @@ if (app.Environment.IsDevelopment() || enableSwaggerInProd)
     });
 }
 
+app.UseTenantResolution();
 
 //app.UseHttpsRedirection();
 app.UseAuthentication();

@@ -12,14 +12,14 @@ using System.Text.Json;
 public class ParentAPI_01_Model_Request_Controller : ControllerBase
 {
     private readonly IUser_Login_DatabaseResolver _dbResolver;
-    private readonly User_Login_Jwt_Token_Service _jwtTokenService;
+    private readonly User_03_Login_Jwt_Token_Service _jwtTokenService;
     private readonly ParentAPI_01_ProcessRequest_Service _processRequestService;
     private readonly DomainManagementDbContext _domainDb;
     private readonly IBackgroundJobQueue _queue;
 
     public ParentAPI_01_Model_Request_Controller(
         IUser_Login_DatabaseResolver dbResolver,
-        User_Login_Jwt_Token_Service jwtTokenService,
+        User_03_Login_Jwt_Token_Service jwtTokenService,
         ParentAPI_01_ProcessRequest_Service processRequestService,
         DomainManagementDbContext domainDb,
         IBackgroundJobQueue queue)

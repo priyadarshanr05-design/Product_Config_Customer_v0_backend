@@ -25,7 +25,7 @@ public class Domain_02_Add_Service
         _logger = logger;
     }
 
-    public async Task<(bool Success, string Message)> AddDomainAsync(Domain_02_Add request)
+    public async Task<(bool Success, string Message)> AddDomainAsync(Domain_02_Add_DTO request)
     {
         try
         {

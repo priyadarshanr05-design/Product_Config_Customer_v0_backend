@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Product_Config_Customer_v0.Data;
+using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Services;
+using System.Security.Claims;
 
 namespace Product_Config_Customer_v0.Controllers
 {
@@ -10,47 +10,36 @@ namespace Product_Config_Customer_v0.Controllers
     [Route("api/user/delete")]
     public class User_05_Account_Delete_Controller : ControllerBase
     {
-        private readonly IUser_Login_DatabaseResolver _dbResolver;
+        private readonly User_05_Account_Delete_Service _service;
         private readonly IUser_Login_TenantProvider _tenantProvider;
 
         public User_05_Account_Delete_Controller(
-            IUser_Login_DatabaseResolver dbResolver,
+            User_05_Account_Delete_Service service,
             IUser_Login_TenantProvider tenantProvider)
         {
-            _dbResolver = dbResolver;
+            _service = service;
             _tenantProvider = tenantProvider;
         }
 
         [Authorize]
         [HttpDelete]
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete()
         {
-            var tenant = _tenantProvider.TenantKey;
-            if (!_dbResolver.TryGetConnectionString(tenant, out var connString))
-                return BadRequest("Unknown domain. Please check the domain name.");
+            var tenant = User.Claims.FirstOrDefault(c => c.Type == "tenant")?.Value;
 
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(connString, ServerVersion.AutoDetect(connString))
-                .Options;
-
-            using var db = new ApplicationDbContext(options);
+            if (tenant == null)
+                return Unauthorized("Tenant missing.");
 
             var userIdClaim = User.Claims.FirstOrDefault(c =>
-                c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier");
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            if (userIdClaim == null)
+            if (string.IsNullOrWhiteSpace(userIdClaim))
                 return Unauthorized("User ID claim missing in token.");
 
-            var userId = int.Parse(userIdClaim.Value);
+            var userId = int.Parse(userIdClaim);
 
-            var user = db.Users.Find(userId);
-            if (user == null)
-                return NotFound();
-
-            db.Users.Remove(user);
-            db.SaveChanges();
-
-            return Ok("User account deleted.");
+            var result = await _service.DeleteAsync(tenant, userId);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
     }
 }

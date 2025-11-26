@@ -1,8 +1,0 @@
-﻿namespace Product_Config_Customer_v0.Models.DTO
-{
-    public class Domain_01_AdminLogin
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
-}

@@ -41,7 +41,7 @@ namespace Product_Config_Customer_v0.Data.Seeders
                     Email = $"demo@{domain}.com",
                     EmailVerified = true,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("Welcome@123!"),
-                    Role = "user",
+                    Role = "InternalUser",
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow
                 },
@@ -61,7 +61,7 @@ namespace Product_Config_Customer_v0.Data.Seeders
                     Email = $"user@{domain}.com",
                     EmailVerified = true,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("Welcome@123!"),
-                    Role = "user",
+                    Role = "InternalUser",
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow
                 },
