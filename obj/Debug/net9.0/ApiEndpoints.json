@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_Add",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_02_Add",
         "IsRequired": true
       }
     ],
@@ -25,7 +25,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_Delete",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_03_Delete",
         "IsRequired": true
       }
     ],
@@ -41,7 +41,7 @@
     "Parameters": [
       {
         "Name": "req",
-        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_AdminLogin",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_01_AdminLogin",
         "IsRequired": true
       }
     ],
@@ -57,14 +57,14 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Product_Config_Customer_v0.DTO.Users_InternalEmailDomain_Add_DTO",
+        "Type": "Product_Config_Customer_v0.DTO.Users_06_InternalEmailDomain_Add_DTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Users_07_InternalEmailDomain_Delete_Controller",
+    "ContainingType": "Users_09_InternalEmailDomain_Delete_Controller",
     "Method": "DeleteDomains",
     "RelativePath": "api/internalemaildomain/delete",
     "HttpMethod": "POST",
@@ -73,7 +73,39 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Product_Config_Customer_v0.DTO.Users_InternalEmailDomain_Delete_DTO",
+        "Type": "Product_Config_Customer_v0.DTO.Users_09_InternalEmailDomain_Delete_DTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Users_07_InternalEmailDomain_Read_Controller",
+    "Method": "ReadDomains",
+    "RelativePath": "api/internalemaildomain/read",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Product_Config_Customer_v0.DTO.Users_07_InternalEmailDomain_Read_DTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Users_08_InternalEmailDomain_Update_Controller",
+    "Method": "UpdateDomain",
+    "RelativePath": "api/internalemaildomain/update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Product_Config_Customer_v0.DTO.Users_08_InternalEmailDomain_Update_DTO",
         "IsRequired": true
       }
     ],

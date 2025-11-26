@@ -42,7 +42,9 @@ namespace Product_Config_Customer_v0.Shared
             services.AddScoped<Domain_01_AdminLogin_Service>();
 
             services.AddScoped<Users_06_InternalEmailDomain_Add_Service>();
-            services.AddScoped<Users_07_InternalEmailDomain_Delete_Service>();
+            services.AddScoped<Users_09_InternalEmailDomain_Delete_Service>();
+            services.AddScoped<Users_07_InternalEmailDomain_Read_Service>();
+            services.AddScoped<Users_08_InternalEmailDomain_Update_Service>();
 
             // Transient services
             services.AddTransient<IEmailSender, SmtpEmailSender>();

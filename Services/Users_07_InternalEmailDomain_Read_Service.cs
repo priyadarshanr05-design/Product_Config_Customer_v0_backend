@@ -4,19 +4,19 @@ using Product_Config_Customer_v0.DTO;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Users_08_InternalEmailDomain_Read_Service
+    public class Users_07_InternalEmailDomain_Read_Service
     {
         private readonly IUser_Login_DatabaseResolver _resolver;
 
-        public Users_08_InternalEmailDomain_Read_Service(IUser_Login_DatabaseResolver resolver)
+        public Users_07_InternalEmailDomain_Read_Service(IUser_Login_DatabaseResolver resolver)
         {
             _resolver = resolver;
         }
 
-        public async Task<Users_08_InternalEmailDomain_Read_Response_DTO> ReadAsync(
-            Users_08_InternalEmailDomain_Read_DTO dto)
+        public async Task<Users_07_InternalEmailDomain_Read_Response_DTO> ReadAsync(
+            Users_07_InternalEmailDomain_Read_DTO dto)
         {
-            var response = new Users_08_InternalEmailDomain_Read_Response_DTO
+            var response = new Users_07_InternalEmailDomain_Read_Response_DTO
             {
                 TenantDomain = dto.TenantDomain
             };
@@ -31,7 +31,7 @@ namespace Product_Config_Customer_v0.Services
             using var db = new ApplicationDbContext(options);
 
             var list = await db.InternalUsersEmailDomains
-                .Select(x => new Users_08_InternalEmailDomain_Read_ResponseItem_DTO
+                .Select(x => new Users_07_InternalEmailDomain_Read_ResponseItem_DTO
                 {
                     Id = x.Id,
                     EmailDomain = x.EmailDomain

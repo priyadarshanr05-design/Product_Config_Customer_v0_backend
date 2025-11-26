@@ -4,23 +4,23 @@ using Product_Config_Customer_v0.DTO;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Users_09_InternalEmailDomain_Update_Service
+    public class Users_08_InternalEmailDomain_Update_Service
     {
         private readonly IUser_Login_DatabaseResolver _resolver;
-        private readonly ILogger<Users_09_InternalEmailDomain_Update_Service> _logger;
+        private readonly ILogger<Users_08_InternalEmailDomain_Update_Service> _logger;
 
-        public Users_09_InternalEmailDomain_Update_Service(
+        public Users_08_InternalEmailDomain_Update_Service(
             IUser_Login_DatabaseResolver resolver,
-            ILogger<Users_09_InternalEmailDomain_Update_Service> logger)
+            ILogger<Users_08_InternalEmailDomain_Update_Service> logger)
         {
             _resolver = resolver;
             _logger = logger;
         }
 
-        public async Task<Users_09_InternalEmailDomain_Update_Response_DTO> UpdateAsync(
-            Users_09_InternalEmailDomain_Update_DTO dto)
+        public async Task<Users_08_InternalEmailDomain_Update_Response_DTO> UpdateAsync(
+            Users_08_InternalEmailDomain_Update_DTO dto)
         {
-            var response = new Users_09_InternalEmailDomain_Update_Response_DTO
+            var response = new Users_08_InternalEmailDomain_Update_Response_DTO
             {
                 TenantDomain = dto.TenantDomain,
                 Id = dto.Id,

@@ -14,7 +14,7 @@ public class Users_06_InternalEmailDomain_Add_Controller : ControllerBase
     }
 
     [HttpPost("add")]
-    public async Task<IActionResult> AddDomains([FromBody] Users_InternalEmailDomain_Add_DTO dto)
+    public async Task<IActionResult> AddDomains([FromBody] Users_06_InternalEmailDomain_Add_DTO dto)
     {
         var result = await _service.AddDomainsAsync(dto);
         return result.Success ? Ok(result.Message) : BadRequest(result.Message);

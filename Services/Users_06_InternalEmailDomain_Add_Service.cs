@@ -18,7 +18,7 @@ public class Users_06_InternalEmailDomain_Add_Service
         _logger = logger;
     }
 
-    public async Task<(bool Success, string Message)> AddDomainsAsync(Users_InternalEmailDomain_Add_DTO dto)
+    public async Task<(bool Success, string Message)> AddDomainsAsync(Users_06_InternalEmailDomain_Add_DTO dto)
     {
         if (string.IsNullOrWhiteSpace(dto.TenantDomain))
             return (false, "TenantDomain is required.");

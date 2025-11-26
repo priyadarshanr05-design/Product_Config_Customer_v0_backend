@@ -4,30 +4,30 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Users_07_InternalEmailDomain_Delete_Service
+    public class Users_09_InternalEmailDomain_Delete_Service
     {
         private readonly IUser_Login_DatabaseResolver _dbResolver;
-        private readonly ILogger<Users_07_InternalEmailDomain_Delete_Service> _logger;
+        private readonly ILogger<Users_09_InternalEmailDomain_Delete_Service> _logger;
 
-        public Users_07_InternalEmailDomain_Delete_Service(
+        public Users_09_InternalEmailDomain_Delete_Service(
             IUser_Login_DatabaseResolver dbResolver,
-            ILogger<Users_07_InternalEmailDomain_Delete_Service> logger)
+            ILogger<Users_09_InternalEmailDomain_Delete_Service> logger)
         {
             _dbResolver = dbResolver;
             _logger = logger;
         }
 
-        public async Task<Users_InternalEmailDomain_Delete_Response_DTO> DeleteDomainsAsync(
-            Users_07_InternalEmailDomain_Delete_DTO dto)
+        public async Task<Users_09_InternalEmailDomain_Delete_Response_DTO> DeleteDomainsAsync(
+            Users_09_InternalEmailDomain_Delete_DTO dto)
         {
-            var response = new Users_InternalEmailDomain_Delete_Response_DTO
+            var response = new Users_09_InternalEmailDomain_Delete_Response_DTO
             {
                 TenantDomain = dto.TenantDomain
             };
 
             if (!_dbResolver.TryGetConnectionString(dto.TenantDomain, out var connString))
             {
-                response.Results.AddRange(dto.Domains.Select(x => new Users_InternalEmailDomain_Delete_Response_Item_DTO
+                response.Results.AddRange(dto.Domains.Select(x => new Users_09_InternalEmailDomain_Delete_Response_Item_DTO
                 {
                     Id = x.Id,
                     Status = "Error",
@@ -44,7 +44,7 @@ namespace Product_Config_Customer_v0.Services
 
             foreach (var item in dto.Domains)
             {
-                var resultItem = new Users_InternalEmailDomain_Delete_Response_Item_DTO
+                var resultItem = new Users_09_InternalEmailDomain_Delete_Response_Item_DTO
                 {
                     Id = item.Id
                 };
