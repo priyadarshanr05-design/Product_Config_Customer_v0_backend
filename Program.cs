@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.Data.Seeders;
+using Product_Config_Customer_v0.Models.Entity;
 using Product_Config_Customer_v0.Repositories;
 using Product_Config_Customer_v0.Repositories.Interfaces;
 using Product_Config_Customer_v0.Services;
@@ -116,28 +117,66 @@ app.UseAuthorization();
 app.UseCors("AllowAll");
 app.MapControllers();
 
-// Run migrations and seed databases
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    var config = services.GetRequiredService<IConfiguration>();
-    var userSeeder = services.GetRequiredService<UserSeeder>();
     var domainDb = services.GetRequiredService<DomainManagementDbContext>();
+    var userSeeder = services.GetRequiredService<UserSeeder>();
+    var domainAdminSeeder = services.GetRequiredService<DomainAdminUserSeeder>();
 
-    // 9a. DomainManagementDbContext migration & seeding
+    // Migrate DomainManagement DB
     await domainDb.Database.MigrateAsync();
-    
-    // 9b. Multi-tenant user databases
-    var tenantDbNames = config.GetSection("SeedDatabases").Get<string[]>() ?? Array.Empty<string>();
+
+    // Seed DomainAdminUsers
+    await domainAdminSeeder.SeedAsync();
+
+    // Fetch all tenant database names dynamically
+    var tenantDbNames = await domainDb.AnonymousRequestControls
+        .Select(d => d.DatabaseName)
+        .ToListAsync();
+
+    // Migrate & seed each tenant DB
     foreach (var dbName in tenantDbNames)
     {
-        var connString = config.GetConnectionString(dbName);
+        var connString = $"server={Environment.GetEnvironmentVariable("DB_SERVER")};port={Environment.GetEnvironmentVariable("DB_PORT")};database={dbName};user={Environment.GetEnvironmentVariable("DB_USERNAME")};password={Environment.GetEnvironmentVariable("DB_PASSWORD")};";
+
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         optionsBuilder.UseMySql(connString, ServerVersion.AutoDetect(connString));
 
         using var tenantDb = new ApplicationDbContext(optionsBuilder.Options);
         await tenantDb.Database.MigrateAsync();
+
+        // Seed user-related data
         await userSeeder.SeedAsync(tenantDb);
+
+        // Transform dbName into a proper email domain
+        string domainName = dbName;
+        if (domainName.StartsWith("CustDb_", StringComparison.OrdinalIgnoreCase))
+        {
+            domainName = domainName.Substring("CustDb_".Length); // remove prefix
+        }
+        domainName = domainName.ToLower(); // convert to lowercase
+        domainName += ".com"; // append .com
+
+        // Seed InternalUsersEmailDomains if empty
+        if (!tenantDb.InternalUsersEmailDomains.Any())
+        {
+            tenantDb.InternalUsersEmailDomains.Add(new Users_InternalEmailDomain
+            {
+                Id = 1,
+                EmailDomain = "visualallies.com"
+            });
+
+            tenantDb.InternalUsersEmailDomains.Add(new Users_InternalEmailDomain
+            {
+                Id = 2,
+                EmailDomain = domainName  // dynamically generated
+            });
+
+            await tenantDb.SaveChangesAsync();
+        }
+
+        Console.WriteLine($"Migration & seeding applied for tenant database: {dbName}");
     }
 }
 

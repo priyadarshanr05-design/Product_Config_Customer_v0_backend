@@ -9,7 +9,7 @@ namespace Product_Config_Customer_v0.Workers
         private readonly IBackgroundJobQueue _jobQueue;
         private readonly IServiceProvider _services;
         private readonly ILogger<ParentAPI_ProcessRequest_Worker> _logger;
-        private readonly SemaphoreSlim _parallelLimit = new(6); // max 6 concurrent jobs
+        private readonly SemaphoreSlim _parallelLimit = new(1000); 
 
         public ParentAPI_ProcessRequest_Worker(IBackgroundJobQueue jobQueue, IServiceProvider services, ILogger<ParentAPI_ProcessRequest_Worker> logger)
         {

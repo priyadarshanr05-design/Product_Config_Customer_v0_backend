@@ -25,20 +25,27 @@ namespace Product_Config_Customer_v0.Shared
             });
 
             services.AddScoped<IRequestModelDomainRepository, RequestModelDomainRepository>();
-            services.AddScoped<ParentAPI_ProcessRequest_Service>();
-            services.AddScoped<ParentAPI_DuplicateHandler_Service>();
-            services.AddScoped<ParentAPI_Request_Status_Service>();
-            services.AddScoped<ParentAPI_GenToken_Service>();
+            services.AddScoped<ParentAPI_01_ProcessRequest_Service>();
+            services.AddScoped<ParentAPI_01_DuplicateHandler_Service>();
+            services.AddScoped<ParentAPI_02_Request_Status_Service>();
+            services.AddScoped<ParentAPI_01_GenToken_Service>();
 
             // Singletons
             services.AddSingleton<User_Login_Jwt_Token_Service>();
             services.AddSingleton<IBackgroundJobQueue, BackgroundJobQueue>();
             services.AddHostedService<ParentAPI_ProcessRequest_Worker>();
-            services.AddSingleton<UserSeeder>();
+            services.AddScoped<UserSeeder>();
+            services.AddScoped<DomainAdminUserSeeder>();
+
+            services.AddScoped<Domain_02_Add_Service>();
+            services.AddScoped<Domain_03_Delete_Service>();
+            services.AddScoped<Domain_01_AdminLogin_Service>();
+
+            services.AddScoped<Users_06_InternalEmailDomain_Add_Service>();
+            services.AddScoped<Users_07_InternalEmailDomain_Delete_Service>();
 
             // Transient services
-            services.AddTransient<IEmailSender, SmtpEmailSender>();            
-
+            services.AddTransient<IEmailSender, SmtpEmailSender>();
 
             return services;
         }

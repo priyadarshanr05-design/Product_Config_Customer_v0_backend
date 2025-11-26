@@ -33,6 +33,10 @@ namespace Product_Config_Customer_v0.Migrations.DomainManagementDb
                     b.Property<bool>("AllowAnonymousRequest")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("DatabaseName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
 
@@ -52,6 +56,7 @@ namespace Product_Config_Customer_v0.Migrations.DomainManagementDb
                         {
                             Id = 1,
                             AllowAnonymousRequest = false,
+                            DatabaseName = "CustDb_Jvl",
                             DateCreated = new DateTime(2025, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(2025, 11, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DomainName = "Jvl"
@@ -60,10 +65,58 @@ namespace Product_Config_Customer_v0.Migrations.DomainManagementDb
                         {
                             Id = 2,
                             AllowAnonymousRequest = true,
+                            DatabaseName = "CustDb_Motor",
                             DateCreated = new DateTime(2025, 11, 4, 7, 58, 12, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(2025, 11, 17, 11, 26, 16, 0, DateTimeKind.Unspecified),
-                            DomainName = "motor"
+                            DomainName = "Motor"
                         });
+                });
+
+            modelBuilder.Entity("Product_Config_Customer_v0.Models.Entity.Domain_Admin_User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<bool>("EmailVerified")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("PasswordResetExpiry")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("PasswordResetOtp")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DomainAdminUsers");
                 });
 #pragma warning restore 612, 618
         }

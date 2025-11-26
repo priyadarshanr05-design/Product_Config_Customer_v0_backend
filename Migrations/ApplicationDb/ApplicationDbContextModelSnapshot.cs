@@ -89,7 +89,36 @@ namespace Product_Config_Customer_v0.Migrations.ApplicationDb
                     b.ToTable("ParentAPI_Model_Requests", (string)null);
                 });
 
-            modelBuilder.Entity("Product_Config_Customer_v0.Models.User", b =>
+            modelBuilder.Entity("Product_Config_Customer_v0.Models.Entity.Users_InternalEmailDomain", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EmailDomain")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InternalUsersEmailDomains");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EmailDomain = "{domain}.com"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EmailDomain = "visualallies.com"
+                        });
+                });
+
+            modelBuilder.Entity("Product_Config_Customer_v0.Models.User_Login_User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,7 +164,7 @@ namespace Product_Config_Customer_v0.Migrations.ApplicationDb
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Product_Config_Customer_v0.Models.VerificationCode", b =>
+            modelBuilder.Entity("Product_Config_Customer_v0.Models.User_Login_VerificationCode", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

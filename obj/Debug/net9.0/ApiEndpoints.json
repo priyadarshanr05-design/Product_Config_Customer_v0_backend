@@ -1,0 +1,209 @@
+[
+  {
+    "ContainingType": "Domain_02_Add_Controller",
+    "Method": "AddDomain",
+    "RelativePath": "api/admin/domain/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_Add",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Domain_03_Delete_Controller",
+    "Method": "DeleteDomain",
+    "RelativePath": "api/admin/domain/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_Delete",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Domain_01_AdminLogin_Controller",
+    "Method": "Login",
+    "RelativePath": "api/admin/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_AdminLogin",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Users_06_InternalEmailDomain_Add_Controller",
+    "Method": "AddDomains",
+    "RelativePath": "api/internalemaildomain/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Product_Config_Customer_v0.DTO.Users_InternalEmailDomain_Add_DTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Users_07_InternalEmailDomain_Delete_Controller",
+    "Method": "DeleteDomains",
+    "RelativePath": "api/internalemaildomain/delete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Product_Config_Customer_v0.DTO.Users_InternalEmailDomain_Delete_DTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ParentAPI_01_Model_Request_Controller",
+    "Method": "SubmitRequest",
+    "RelativePath": "api/modelrequest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestBody",
+        "Type": "System.Text.Json.JsonDocument",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ParentAPI_02_Request_Status_Controller",
+    "Method": "GetStatus",
+    "RelativePath": "api/modelrequest/{requestId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "domainName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "requestId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Product_Config_Customer_v0.Controllers.User_05_Account_Delete_Controller",
+    "Method": "Delete",
+    "RelativePath": "api/user/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "User_04_ForgetPassword_Controller",
+    "Method": "RequestReset",
+    "RelativePath": "api/user/forgetpassword/request",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "Product_Config_Customer_v0.Models.User_ForgetPassword_Request",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "User_04_ForgetPassword_Controller",
+    "Method": "ResetPassword",
+    "RelativePath": "api/user/forgetpassword/reset",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "Product_Config_Customer_v0.Models.User_ForgetPassword_Reset",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "User_03_Login_Controller",
+    "Method": "Login",
+    "RelativePath": "api/user/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "Product_Config_Customer_v0.Models.User_Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Product_Config_Customer_v0.Controllers.User_01_Registration_Controller",
+    "Method": "Register",
+    "RelativePath": "api/user/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "Product_Config_Customer_v0.Models.User_Registration",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Product_Config_Customer_v0.Controllers.User_02_Verification_Controller",
+    "Method": "Verify",
+    "RelativePath": "api/user/verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "Product_Config_Customer_v0.Models.User_Verification",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
