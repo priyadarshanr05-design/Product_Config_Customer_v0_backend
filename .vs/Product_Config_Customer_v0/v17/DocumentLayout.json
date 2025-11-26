@@ -3,32 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\users_09_internalemaildomain_delete_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\users_09_internalemaildomain_delete_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\users_08_internalemaildomain_update_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\users_08_internalemaildomain_update_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\users_07_internalemaildomain_read_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\users_07_internalemaildomain_read_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\users_09_internalemaildomain_delete_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\users_09_internalemaildomain_delete_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\users_06_internalemaildomain_add_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\users_06_internalemaildomain_add_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\users_08_internalemaildomain_update_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\users_08_internalemaildomain_update_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\users_07_internalemaildomain_read_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\users_07_internalemaildomain_read_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\users_09_internalemaildomain_delete_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\users_09_internalemaildomain_delete_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\users_08_internalemaildomain_update_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\users_08_internalemaildomain_update_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\models\\dto\\users_09_internalemaildomain_delete_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,16 +27,28 @@
       "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:models\\dto\\users_08_internalemaildomain_update_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\models\\dto\\users_07_internalemaildomain_read_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:models\\dto\\users_07_internalemaildomain_read_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\models\\dto\\users_06_internalemaildomain_add_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:models\\dto\\users_06_internalemaildomain_add_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\users_07_internalemaildomain_read_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\users_07_internalemaildomain_read_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\users_06_internalemaildomain_add_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\users_06_internalemaildomain_add_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\models\\dto\\users_07_internalemaildomain_read_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:models\\dto\\users_07_internalemaildomain_read_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\users_06_internalemaildomain_add_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\users_06_internalemaildomain_add_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\users_07_internalemaildomain_read_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\users_07_internalemaildomain_read_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\shared\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,130 +98,130 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Users_06_InternalEmailDomain_Add_Controller.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_06_InternalEmailDomain_Add_Controller.cs",
-              "RelativeDocumentMoniker": "Controllers\\Users_06_InternalEmailDomain_Add_Controller.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_06_InternalEmailDomain_Add_Controller.cs",
-              "RelativeToolTip": "Controllers\\Users_06_InternalEmailDomain_Add_Controller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T15:12:56.245Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Users_09_InternalEmailDomain_Delete_Controller.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Controllers\\Users_09_InternalEmailDomain_Delete_Controller.cs",
-              "RelativeDocumentMoniker": "Controllers\\Users_09_InternalEmailDomain_Delete_Controller.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Controllers\\Users_09_InternalEmailDomain_Delete_Controller.cs",
-              "RelativeToolTip": "Controllers\\Users_09_InternalEmailDomain_Delete_Controller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T15:33:07.078Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Users_07_InternalEmailDomain_Read_Service.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Services\\Users_07_InternalEmailDomain_Read_Service.cs",
-              "RelativeDocumentMoniker": "Services\\Users_07_InternalEmailDomain_Read_Service.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Services\\Users_07_InternalEmailDomain_Read_Service.cs",
-              "RelativeToolTip": "Services\\Users_07_InternalEmailDomain_Read_Service.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAowCMAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T05:03:00.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Users_08_InternalEmailDomain_Update_Service.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Services\\Users_08_InternalEmailDomain_Update_Service.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_08_InternalEmailDomain_Update_Service.cs",
               "RelativeDocumentMoniker": "Services\\Users_08_InternalEmailDomain_Update_Service.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Services\\Users_08_InternalEmailDomain_Update_Service.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_08_InternalEmailDomain_Update_Service.cs",
               "RelativeToolTip": "Services\\Users_08_InternalEmailDomain_Update_Service.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAowBYAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAUwFoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T05:03:24.09Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Users_09_InternalEmailDomain_Delete_Service.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Services\\Users_09_InternalEmailDomain_Delete_Service.cs",
-              "RelativeDocumentMoniker": "Services\\Users_09_InternalEmailDomain_Delete_Service.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Services\\Users_09_InternalEmailDomain_Delete_Service.cs",
-              "RelativeToolTip": "Services\\Users_09_InternalEmailDomain_Delete_Service.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAowC0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T15:33:01.965Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Users_08_InternalEmailDomain_Update_Controller.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Controllers\\Users_08_InternalEmailDomain_Update_Controller.cs",
-              "RelativeDocumentMoniker": "Controllers\\Users_08_InternalEmailDomain_Update_Controller.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Controllers\\Users_08_InternalEmailDomain_Update_Controller.cs",
-              "RelativeToolTip": "Controllers\\Users_08_InternalEmailDomain_Update_Controller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T05:04:20.746Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Users_07_InternalEmailDomain_Read_Controller.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Controllers\\Users_07_InternalEmailDomain_Read_Controller.cs",
-              "RelativeDocumentMoniker": "Controllers\\Users_07_InternalEmailDomain_Read_Controller.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Controllers\\Users_07_InternalEmailDomain_Read_Controller.cs",
-              "RelativeToolTip": "Controllers\\Users_07_InternalEmailDomain_Read_Controller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T05:03:57.931Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Users_09_InternalEmailDomain_Delete_DTO.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Models\\DTO\\Users_09_InternalEmailDomain_Delete_DTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTO\\Users_09_InternalEmailDomain_Delete_DTO.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Models\\DTO\\Users_09_InternalEmailDomain_Delete_DTO.cs",
-              "RelativeToolTip": "Models\\DTO\\Users_09_InternalEmailDomain_Delete_DTO.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAowBoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T15:32:07.808Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "Users_08_InternalEmailDomain_Update_DTO.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Models\\DTO\\Users_08_InternalEmailDomain_Update_DTO.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_08_InternalEmailDomain_Update_DTO.cs",
               "RelativeDocumentMoniker": "Models\\DTO\\Users_08_InternalEmailDomain_Update_DTO.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Models\\DTO\\Users_08_InternalEmailDomain_Update_DTO.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_08_InternalEmailDomain_Update_DTO.cs",
               "RelativeToolTip": "Models\\DTO\\Users_08_InternalEmailDomain_Update_DTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T05:02:33.124Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Users_09_InternalEmailDomain_Delete_Service.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_09_InternalEmailDomain_Delete_Service.cs",
+              "RelativeDocumentMoniker": "Services\\Users_09_InternalEmailDomain_Delete_Service.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_09_InternalEmailDomain_Delete_Service.cs",
+              "RelativeToolTip": "Services\\Users_09_InternalEmailDomain_Delete_Service.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAUwFkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T15:33:01.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Users_09_InternalEmailDomain_Delete_DTO.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_09_InternalEmailDomain_Delete_DTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTO\\Users_09_InternalEmailDomain_Delete_DTO.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_09_InternalEmailDomain_Delete_DTO.cs",
+              "RelativeToolTip": "Models\\DTO\\Users_09_InternalEmailDomain_Delete_DTO.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAuwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T15:32:07.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Users_08_InternalEmailDomain_Update_Controller.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_08_InternalEmailDomain_Update_Controller.cs",
+              "RelativeDocumentMoniker": "Controllers\\Users_08_InternalEmailDomain_Update_Controller.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_08_InternalEmailDomain_Update_Controller.cs",
+              "RelativeToolTip": "Controllers\\Users_08_InternalEmailDomain_Update_Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T05:04:20.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Users_09_InternalEmailDomain_Delete_Controller.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_09_InternalEmailDomain_Delete_Controller.cs",
+              "RelativeDocumentMoniker": "Controllers\\Users_09_InternalEmailDomain_Delete_Controller.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_09_InternalEmailDomain_Delete_Controller.cs",
+              "RelativeToolTip": "Controllers\\Users_09_InternalEmailDomain_Delete_Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAUwAsAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T15:33:07.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Users_06_InternalEmailDomain_Add_DTO.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_06_InternalEmailDomain_Add_DTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTO\\Users_06_InternalEmailDomain_Add_DTO.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_06_InternalEmailDomain_Add_DTO.cs",
+              "RelativeToolTip": "Models\\DTO\\Users_06_InternalEmailDomain_Add_DTO.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAA2wCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T15:20:52.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Users_07_InternalEmailDomain_Read_Controller.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_07_InternalEmailDomain_Read_Controller.cs",
+              "RelativeDocumentMoniker": "Controllers\\Users_07_InternalEmailDomain_Read_Controller.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_07_InternalEmailDomain_Read_Controller.cs",
+              "RelativeToolTip": "Controllers\\Users_07_InternalEmailDomain_Read_Controller.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T05:03:57.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Users_06_InternalEmailDomain_Add_Controller.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_06_InternalEmailDomain_Add_Controller.cs",
+              "RelativeDocumentMoniker": "Controllers\\Users_06_InternalEmailDomain_Add_Controller.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\Users_06_InternalEmailDomain_Add_Controller.cs",
+              "RelativeToolTip": "Controllers\\Users_06_InternalEmailDomain_Add_Controller.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T15:12:56.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 9,
               "Title": "Users_07_InternalEmailDomain_Read_DTO.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Models\\DTO\\Users_07_InternalEmailDomain_Read_DTO.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_07_InternalEmailDomain_Read_DTO.cs",
               "RelativeDocumentMoniker": "Models\\DTO\\Users_07_InternalEmailDomain_Read_DTO.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Models\\DTO\\Users_07_InternalEmailDomain_Read_DTO.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_07_InternalEmailDomain_Read_DTO.cs",
               "RelativeToolTip": "Models\\DTO\\Users_07_InternalEmailDomain_Read_DTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T05:01:49.779Z",
               "EditorCaption": ""
@@ -229,14 +229,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Users_06_InternalEmailDomain_Add_DTO.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_06_InternalEmailDomain_Add_DTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTO\\Users_06_InternalEmailDomain_Add_DTO.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Models\\DTO\\Users_06_InternalEmailDomain_Add_DTO.cs",
-              "RelativeToolTip": "Models\\DTO\\Users_06_InternalEmailDomain_Add_DTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Title": "Users_06_InternalEmailDomain_Add_Service.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_06_InternalEmailDomain_Add_Service.cs",
+              "RelativeDocumentMoniker": "Services\\Users_06_InternalEmailDomain_Add_Service.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_06_InternalEmailDomain_Add_Service.cs",
+              "RelativeToolTip": "Services\\Users_06_InternalEmailDomain_Add_Service.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAwwBIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T15:20:52.09Z",
+              "WhenOpened": "2025-11-25T15:22:25.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Users_07_InternalEmailDomain_Read_Service.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_07_InternalEmailDomain_Read_Service.cs",
+              "RelativeDocumentMoniker": "Services\\Users_07_InternalEmailDomain_Read_Service.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_07_InternalEmailDomain_Read_Service.cs",
+              "RelativeToolTip": "Services\\Users_07_InternalEmailDomain_Read_Service.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T05:03:00.494Z",
               "EditorCaption": ""
             },
             {
@@ -249,21 +262,7 @@
               "RelativeToolTip": "Shared\\ServiceExtensions.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAiwC4AAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T15:25:17.86Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Users_06_InternalEmailDomain_Add_Service.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_06_InternalEmailDomain_Add_Service.cs",
-              "RelativeDocumentMoniker": "Services\\Users_06_InternalEmailDomain_Add_Service.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\Users_06_InternalEmailDomain_Add_Service.cs",
-              "RelativeToolTip": "Services\\Users_06_InternalEmailDomain_Add_Service.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAiwBwAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T15:22:25.934Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T15:25:17.86Z"
             },
             {
               "$type": "Document",
@@ -275,8 +274,7 @@
               "RelativeToolTip": "Services\\ParentAPI_01_ProcessRequest_Service.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T05:08:36.634Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T05:08:36.634Z"
             },
             {
               "$type": "Document",

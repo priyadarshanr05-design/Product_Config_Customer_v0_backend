@@ -22,15 +22,20 @@ namespace Product_Config_Customer_v0.Services
         {
             var response = new Users_08_InternalEmailDomain_Update_Response_DTO
             {
-                TenantDomain = dto.TenantDomain,
-                Id = dto.Id,
-                NewEmailDomain = dto.NewEmailDomain
+                TenantDomain = dto.TenantDomain
             };
 
             if (!_resolver.TryGetConnectionString(dto.TenantDomain, out var conn))
             {
-                response.Status = "Error";
-                response.Message = $"Unknown tenant '{dto.TenantDomain}'";
+                foreach (var d in dto.Domains)
+                {
+                    response.Results.Add(new Users_08_InternalEmailDomain_Update_Response_Item_DTO
+                    {
+                        Id = d.Id,
+                        Status = "Error",
+                        Message = $"Unknown tenant '{dto.TenantDomain}'"
+                    });
+                }
                 return response;
             }
 
@@ -40,30 +45,43 @@ namespace Product_Config_Customer_v0.Services
 
             using var db = new ApplicationDbContext(options);
 
-            var record = await db.InternalUsersEmailDomains
-                .FirstOrDefaultAsync(x => x.Id == dto.Id);
-
-            if (record == null)
+            foreach (var item in dto.Domains)
             {
-                response.Status = "NotFound";
-                response.Message = "Record does not exist.";
-                return response;
-            }
+                var res = new Users_08_InternalEmailDomain_Update_Response_Item_DTO
+                {
+                    Id = item.Id
+                };
 
-            response.OldEmailDomain = record.EmailDomain;
+                try
+                {
+                    var record = await db.InternalUsersEmailDomains
+                        .FirstOrDefaultAsync(x => x.Id == item.Id);
 
-            try
-            {
-                record.EmailDomain = dto.NewEmailDomain.Trim().ToLower();
-                await db.SaveChangesAsync();
+                    if (record == null)
+                    {
+                        res.Status = "NotFound";
+                        res.Message = "Record does not exist";
+                    }
+                    else
+                    {
+                        res.OldEmailDomain = record.EmailDomain;
+                        record.EmailDomain = item.NewEmailDomain.Trim().ToLower();
 
-                response.Status = "Updated";
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error updating Id {Id}", dto.Id);
-                response.Status = "Error";
-                response.Message = ex.Message;
+                        await db.SaveChangesAsync();
+
+                        res.NewEmailDomain = record.EmailDomain;
+                        res.Status = "Updated";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    res.Status = "Error";
+                    res.Message = ex.Message;
+
+                    _logger.LogError(ex, "Error updating email domain Id {Id}", item.Id);
+                }
+
+                response.Results.Add(res);
             }
 
             return response;

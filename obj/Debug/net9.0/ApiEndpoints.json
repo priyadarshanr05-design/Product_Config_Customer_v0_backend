@@ -97,7 +97,7 @@
   },
   {
     "ContainingType": "Users_08_InternalEmailDomain_Update_Controller",
-    "Method": "UpdateDomain",
+    "Method": "UpdateDomains",
     "RelativePath": "api/internalemaildomain/update",
     "HttpMethod": "POST",
     "IsController": true,

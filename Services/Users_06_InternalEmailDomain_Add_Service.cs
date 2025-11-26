@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.DTO;
-using Product_Config_Customer_v0.Models;
 using Product_Config_Customer_v0.Models.Entity;
-using System.Text.RegularExpressions;
 
 public class Users_06_InternalEmailDomain_Add_Service
 {
@@ -18,17 +16,36 @@ public class Users_06_InternalEmailDomain_Add_Service
         _logger = logger;
     }
 
-    public async Task<(bool Success, string Message)> AddDomainsAsync(Users_06_InternalEmailDomain_Add_DTO dto)
+    public async Task<Users_06_InternalEmailDomain_Add_Response_DTO> AddDomainsAsync(
+        Users_06_InternalEmailDomain_Add_DTO dto)
     {
+        var response = new Users_06_InternalEmailDomain_Add_Response_DTO
+        {
+            TenantDomain = dto.TenantDomain
+        };
+
+        // Basic validation
         if (string.IsNullOrWhiteSpace(dto.TenantDomain))
-            return (false, "TenantDomain is required.");
+        {
+            response.Status = "Error";
+            response.Message = "TenantDomain is required.";
+            return response;
+        }
 
         if (dto.Domains == null || dto.Domains.Count == 0)
-            return (false, "At least one domain must be provided.");
+        {
+            response.Status = "Error";
+            response.Message = "At least one domain must be provided.";
+            return response;
+        }
 
-        // Resolve the correct tenant DB connection string
+        // Resolve correct DB
         if (!_dbResolver.TryGetConnectionString(dto.TenantDomain, out var connString))
-            return (false, $"Unknown tenant domain '{dto.TenantDomain}'.");
+        {
+            response.Status = "Error";
+            response.Message = $"Unknown tenant domain '{dto.TenantDomain}'.";
+            return response;
+        }
 
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseMySql(connString, ServerVersion.AutoDetect(connString))
@@ -38,35 +55,67 @@ public class Users_06_InternalEmailDomain_Add_Service
 
         foreach (var item in dto.Domains)
         {
+            var result = new Users_06_InternalEmailDomain_Add_Response_Item_DTO();
+
             try
             {
                 if (string.IsNullOrWhiteSpace(item.EmailDomain))
-                    return (false, "EmailDomain cannot be empty.");
+                {
+                    result.Status = "Invalid";
+                    result.Message = "EmailDomain cannot be empty.";
+                    response.Results.Add(result);
+                    continue;
+                }
 
-                string sanitizedDomain = item.EmailDomain.Trim().ToLower();
+                string sanitized = item.EmailDomain.Trim().ToLower();
+                result.EmailDomain = sanitized;
 
                 bool exists = await db.InternalUsersEmailDomains
-                    .AnyAsync(x => x.EmailDomain == sanitizedDomain);
+                    .AnyAsync(x => x.EmailDomain == sanitized);
 
                 if (exists)
                 {
-                    _logger.LogWarning("Email domain already exists: {EmailDomain}", sanitizedDomain);
-                    continue; // skip duplicates
+                    result.Status = "Duplicate";
+                    result.Message = "EmailDomain already exists.";
+                    response.Results.Add(result);
+                    continue;
                 }
 
                 await db.InternalUsersEmailDomains.AddAsync(
-                    new Users_InternalEmailDomain { EmailDomain = sanitizedDomain }
+                    new Users_InternalEmailDomain { EmailDomain = sanitized }
                 );
 
-                _logger.LogInformation("Adding email domain: {EmailDomain}", sanitizedDomain);
+                result.Status = "Added";
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error adding email domain {EmailDomain}", item.EmailDomain);
+                result.Status = "Error";
+                result.Message = "Failed to add. See logs.";
             }
+
+            response.Results.Add(result);
         }
 
         await db.SaveChangesAsync();
-        return (true, "Domains added successfully.");
+
+        // Compute final status
+        if (response.Results.All(r => r.Status == "Added"))
+        {
+            response.Status = "Success";
+            response.Message = "All domains added successfully.";
+        }
+        else if (response.Results.Any(r => r.Status == "Added"))
+        {
+            response.Status = "PartialSuccess";
+            response.Message = "Some domains were added, some failed.";
+        }
+        else
+        {
+            response.Status = "Error";
+            response.Message = "No domains were added.";
+        }
+
+        return response;
     }
 }

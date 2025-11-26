@@ -7,16 +7,42 @@ using Product_Config_Customer_v0.Services;
 public class Users_06_InternalEmailDomain_Add_Controller : ControllerBase
 {
     private readonly Users_06_InternalEmailDomain_Add_Service _service;
+    private readonly ILogger<Users_06_InternalEmailDomain_Add_Controller> _logger;
 
-    public Users_06_InternalEmailDomain_Add_Controller(Users_06_InternalEmailDomain_Add_Service service)
+    public Users_06_InternalEmailDomain_Add_Controller(
+        Users_06_InternalEmailDomain_Add_Service service,
+        ILogger<Users_06_InternalEmailDomain_Add_Controller> logger)
     {
         _service = service;
+        _logger = logger;
     }
 
     [HttpPost("add")]
     public async Task<IActionResult> AddDomains([FromBody] Users_06_InternalEmailDomain_Add_DTO dto)
     {
-        var result = await _service.AddDomainsAsync(dto);
-        return result.Success ? Ok(result.Message) : BadRequest(result.Message);
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        try
+        {
+            var response = await _service.AddDomainsAsync(dto);
+
+            if (response.Status == "Success")
+                return Ok(response);
+
+            if (response.Status == "PartialSuccess")
+                return Ok(response);
+
+            return BadRequest(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Unhandled error while adding internal email domains.");
+            return StatusCode(500, new
+            {
+                Status = "Error",
+                Message = "Internal server error. Please try again later."
+            });
+        }
     }
 }

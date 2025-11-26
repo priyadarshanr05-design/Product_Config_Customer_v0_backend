@@ -17,7 +17,10 @@ public class Users_09_InternalEmailDomain_Delete_Controller : ControllerBase
     [HttpPost]
     public async Task<IActionResult> DeleteDomains([FromBody] Users_09_InternalEmailDomain_Delete_DTO dto)
     {
-        var result = await _service.DeleteDomainsAsync(dto);
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var result = await _service.DeleteAsync(dto);
         return Ok(result);
     }
 }

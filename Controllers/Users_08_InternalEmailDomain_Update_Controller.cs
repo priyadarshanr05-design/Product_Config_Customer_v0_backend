@@ -15,8 +15,11 @@ public class Users_08_InternalEmailDomain_Update_Controller : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateDomain([FromBody] Users_08_InternalEmailDomain_Update_DTO dto)
+    public async Task<IActionResult> UpdateDomains([FromBody] Users_08_InternalEmailDomain_Update_DTO dto)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
         var result = await _service.UpdateAsync(dto);
         return Ok(result);
     }
