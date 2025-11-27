@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.Models.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Domain_03_Read_Service
+    public class Domain_03_Read_Service : IDomain_03_Read_Service
     {
         private readonly DomainManagementDbContext _domainDb;
 
@@ -18,6 +19,7 @@ namespace Product_Config_Customer_v0.Services
             return await _domainDb.AnonymousRequestControls
                 .Select(x => new Domain_05_Read
                 {
+                    Id = x.Id,
                     DomainName = x.DomainName,
                     DatabaseName = x.DatabaseName,
                     AllowAnonymousRequest = x.AllowAnonymousRequest,

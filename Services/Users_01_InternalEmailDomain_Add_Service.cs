@@ -2,17 +2,18 @@
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Models.Entity;
+using Product_Config_Customer_v0.Services.Interfaces;
 
-public class Users_01_InternalEmailDomain_Add_Service
+public class Users_01_InternalEmailDomain_Add_Service : IUsers_01_InternalEmailDomain_Add_Service
 {
-    private readonly IUser_Login_DatabaseResolver _dbResolver;
+    private readonly ITenantDbContextFactory _dbFactory;
     private readonly ILogger<Users_01_InternalEmailDomain_Add_Service> _logger;
 
     public Users_01_InternalEmailDomain_Add_Service(
-        IUser_Login_DatabaseResolver dbResolver,
+        ITenantDbContextFactory dbFactory,
         ILogger<Users_01_InternalEmailDomain_Add_Service> logger)
     {
-        _dbResolver = dbResolver;
+        _dbFactory = dbFactory;
         _logger = logger;
     }
 
@@ -39,19 +40,7 @@ public class Users_01_InternalEmailDomain_Add_Service
             return response;
         }
 
-        // Resolve correct DB
-        if (!_dbResolver.TryGetConnectionString(dto.TenantDomain, out var connString))
-        {
-            response.Status = "Error";
-            response.Message = $"Unknown tenant domain '{dto.TenantDomain}'.";
-            return response;
-        }
-
-        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseMySql(connString, ServerVersion.AutoDetect(connString))
-            .Options;
-
-        using var db = new ApplicationDbContext(options);
+        await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
         foreach (var item in dto.Domains)
         {

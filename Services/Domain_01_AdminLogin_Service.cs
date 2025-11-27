@@ -2,17 +2,18 @@
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.Models;
 using Product_Config_Customer_v0.Models.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Domain_01_AdminLogin_Service
+    public class Domain_01_AdminLogin_Service : IDomain_01_AdminLogin_Service
     {
         private readonly DomainManagementDbContext _domainDb;
-        private readonly User_03_Login_Jwt_Token_Service _jwt;
+        private readonly IUser_03_Login_Jwt_Token_Service _jwt;
 
         public Domain_01_AdminLogin_Service(
             DomainManagementDbContext domainDb,
-            User_03_Login_Jwt_Token_Service jwt)
+            IUser_03_Login_Jwt_Token_Service jwt)
         {
             _domainDb = domainDb;
             _jwt = jwt;
@@ -33,8 +34,7 @@ namespace Product_Config_Customer_v0.Services
                 Role = user.Role
             };
 
-            return _jwt.GenerateToken(loginUser, req.TenantDomain);
+            return _jwt.GenerateTokenDomainAdmin(loginUser);
         }
-
     }
 }

@@ -6,6 +6,7 @@ using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Models;
 using Product_Config_Customer_v0.Models.DTO;
 using Product_Config_Customer_v0.Models.Entity;
+using Product_Config_Customer_v0.Services.Interfaces;
 using Product_Config_Customer_v0.Shared.Helpers;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -13,13 +14,13 @@ using System.Text;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class User_03_Login_Service
+    public class User_03_Login_Service : IUser_03_Login_Service
     {
-        private readonly IUser_Login_DatabaseResolver _dbResolver;
+        private readonly ITenantDbContextFactory _dbFactory;
         private readonly ILogger<User_03_Login_Service> _logger;
         private readonly IConfiguration _configuration;
         private readonly IEmailSender _emailSender;
-        private readonly User_03_Login_Jwt_Token_Service _tokenService;
+        private readonly IUser_03_Login_Jwt_Token_Service _tokenService;
 
 
         // Set this flag to true to bypass OTP/email verification (for testing)
@@ -28,13 +29,13 @@ namespace Product_Config_Customer_v0.Services
         private const int OtpExpiryMinutes = 15;
 
         public User_03_Login_Service(
-            IUser_Login_DatabaseResolver dbResolver,
+            ITenantDbContextFactory dbFactory,
             ILogger<User_03_Login_Service> logger,
             IConfiguration configuration,
             IEmailSender emailSender,
-            User_03_Login_Jwt_Token_Service tokenService)
+            IUser_03_Login_Jwt_Token_Service tokenService)
         {
-            _dbResolver = dbResolver;
+            _dbFactory = dbFactory;
             _logger = logger;
             _configuration = configuration;
             _emailSender = emailSender;
@@ -47,18 +48,7 @@ namespace Product_Config_Customer_v0.Services
         {
             var resp = new User_03_Login_Response_DTO();
 
-            if (!_dbResolver.TryGetConnectionString(dto.TenantDomain, out var conn))
-            {
-                resp.Success = false;
-                resp.Message = "Invalid tenant.";
-                return resp;
-            }
-
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(conn, ServerVersion.AutoDetect(conn))
-                .Options;
-
-            await using var db = new ApplicationDbContext(options);
+            await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
             var user = await db.Users
                 .AsNoTracking()

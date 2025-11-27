@@ -2,18 +2,22 @@
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Models;
+using Product_Config_Customer_v0.Services.Interfaces;
+using Product_Config_Customer_v0.Shared.Helpers;
 using System.Security.Cryptography;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class User_04_ForgetPassword_Service
+    public class User_04_ForgetPassword_Service : IUser_04_ForgetPassword_Service
     {
-        private readonly IUser_Login_DatabaseResolver _dbResolver;
+        private readonly ITenantDbContextFactory _dbFactory;
         private readonly IEmailSender _email;
 
-        public User_04_ForgetPassword_Service(IUser_Login_DatabaseResolver dbResolver, IEmailSender email)
+        public User_04_ForgetPassword_Service(
+            ITenantDbContextFactory dbFactory, 
+            IEmailSender email )
         {
-            _dbResolver = dbResolver;
+            _dbFactory = dbFactory;
             _email = email;
         }
 
@@ -22,14 +26,7 @@ namespace Product_Config_Customer_v0.Services
             if (string.IsNullOrWhiteSpace(req.DomainName))
                 return new User_04_ForgetPassword_Response_DTO { Success = false, Message = "DomainName is required." };
 
-            if (!_dbResolver.TryGetConnectionString(req.DomainName, out var connString))
-                return new User_04_ForgetPassword_Response_DTO { Success = false, Message = "Unknown domain." };
-
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(connString, ServerVersion.AutoDetect(connString))
-                .Options;
-
-            await using var db = new ApplicationDbContext(options);
+            await using var db = _dbFactory.CreateDbContext(req.DomainName);
 
             var user = await db.Users.FirstOrDefaultAsync(x => x.Email == req.Email);
             if (user == null)
@@ -57,14 +54,7 @@ namespace Product_Config_Customer_v0.Services
             if (string.IsNullOrWhiteSpace(req.DomainName))
                 return new User_04_ForgetPassword_Response_DTO { Success = false, Message = "DomainName is required." };
 
-            if (!_dbResolver.TryGetConnectionString(req.DomainName, out var connString))
-                return new User_04_ForgetPassword_Response_DTO { Success = false, Message = "Unknown domain." };
-
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(connString, ServerVersion.AutoDetect(connString))
-                .Options;
-
-            await using var db = new ApplicationDbContext(options);
+            await using var db = _dbFactory.CreateDbContext(req.DomainName);
 
             var user = await db.Users.FirstOrDefaultAsync(x => x.Email == req.Email);
             if (user == null)
@@ -75,6 +65,16 @@ namespace Product_Config_Customer_v0.Services
 
             if (user.PasswordResetExpiry < DateTime.UtcNow)
                 return new User_04_ForgetPassword_Response_DTO { Success = false, Message = "OTP expired." };
+
+            var passwordCheck = PasswordValidator.Validate(req.NewPassword);
+            if (!passwordCheck.IsValid)
+            {
+                return new User_04_ForgetPassword_Response_DTO
+                {
+                    Success = false,
+                    Message = passwordCheck.Message
+                };
+            }
 
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(req.NewPassword);
             user.PasswordResetOtp = null;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-public class User_03_Login_TenantProvider : IUser_Login_TenantProvider
+public class User_03_Login_TenantProvider : IUser_03_Login_TenantProvider
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     private const string TenantKeyItem = "TenantKey";

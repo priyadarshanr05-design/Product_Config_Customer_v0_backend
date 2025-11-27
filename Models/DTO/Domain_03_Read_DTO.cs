@@ -2,6 +2,7 @@
 {
     public class Domain_05_Read
     {
+        public int Id { get; set; }
         public string DomainName { get; set; }
         public string DatabaseName { get; set; }
         public bool AllowAnonymousRequest { get; set; }

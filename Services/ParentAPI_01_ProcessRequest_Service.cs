@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.Models.Entity;
+using Product_Config_Customer_v0.Services.Interfaces;
 using Product_Config_Customer_v0.Shared;
 using Product_Config_Customer_v0.Shared.Helpers;
 using System.Net.Http.Headers;
@@ -9,24 +10,24 @@ using System.Text.Json;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class ParentAPI_01_ProcessRequest_Service
+    public class ParentAPI_01_ProcessRequest_Service : IParentAPI_01_ProcessRequest_Service
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ParentAPI_01_GenToken_Service _domainService;
-        private readonly IUser_Login_DatabaseResolver _dbResolver;
+        private readonly IParentAPI_01_GenToken_Service _domainService;
+        private readonly ITenantDbContextFactory _dbFactory;
         private readonly ILogger<ParentAPI_01_ProcessRequest_Service> _logger;
         private readonly IConfiguration _configuration;
 
         public ParentAPI_01_ProcessRequest_Service(
             IHttpClientFactory httpClientFactory,
-            ParentAPI_01_GenToken_Service domainService,
-            IUser_Login_DatabaseResolver dbResolver,
+            IParentAPI_01_GenToken_Service domainService,
+            ITenantDbContextFactory dbFactory,
             IConfiguration configuration,
             ILogger<ParentAPI_01_ProcessRequest_Service> logger)
         {
             _httpClientFactory = httpClientFactory;
             _domainService = domainService;
-            _dbResolver = dbResolver;
+            _dbFactory = dbFactory;
             _configuration = configuration;
             _logger = logger;
         }
@@ -40,20 +41,33 @@ namespace Product_Config_Customer_v0.Services
         /// <summary>
         /// Submits a model request, checks for duplicates, and queues processing.
         /// </summary>
-        public async Task<object> SubmitRequestAsync(JsonElement root, string domainName, string? userId, IBackgroundJobQueue queue)
+        public async Task<object> SubmitRequestAsync(JsonElement root, string domainName, string? userId, IBackgroundJobQueue queue, ITenantDbContextFactory dbFactory)
         {
+            await using var db = _dbFactory.CreateDbContext(domainName);
+
             // Normalize JSON and compute hash
             var requestJson = root.GetRawText();
             var (canonicalized, hash) = JsonHashHelper.NormalizeAndHashCached(requestJson);
-
-            await using var db = CreateDbContext(domainName);
+                       
 
             // Check for duplicate
             var existingRequest = await db.ParentAPI_Model_Requests.FirstOrDefaultAsync(r => r.RequestHash == hash);
             if (existingRequest != null)
             {
                 queue.QueueJob(async t => await ProcessRequestAsync(existingRequest));
-                return new { Message = "Duplicate request found", RequestId = existingRequest.RequestId };
+                return new
+                {
+                    Message = "Cached response",
+                    RequestId = existingRequest.RequestId,
+                    Status = existingRequest.Status,
+                    StatusCode = existingRequest.StatusCode,
+                    PartId = existingRequest.PartId,
+                    PartNumber = existingRequest.PartNumber,
+                    FileType = existingRequest.FileType,
+                    ApiStatus = existingRequest.ApiStatus,
+                    ApiResponse = existingRequest.ApiResponse,
+                    MessageDetail = existingRequest.Message
+                };
             }
 
             // Create new request
@@ -95,7 +109,7 @@ namespace Product_Config_Customer_v0.Services
         /// </summary>
         public async Task ProcessRequestAsync(ParentAPI_Model_Request request)
         {
-            await using var db = CreateDbContext(request.DomainName);
+            await using var db = _dbFactory.CreateDbContext(request.DomainName);
 
             try
             {
@@ -131,12 +145,12 @@ namespace Product_Config_Customer_v0.Services
         /// </summary>
         public async Task PollUntilCompleteAsync(ParentAPI_Model_Request request, HttpClient client, string token)
         {
-            await using var db = CreateDbContext(request.DomainName);
+            await using var db = _dbFactory.CreateDbContext(request.DomainName);
 
             var startTime = DateTime.UtcNow;
             while ((DateTime.UtcNow - startTime).TotalMinutes < 5)
             {
-                await Task.Delay(2000);
+                await Task.Delay(1500);
 
                 var pollReq = new HttpRequestMessage(HttpMethod.Post, PollingUrl)
                 {
@@ -160,24 +174,6 @@ namespace Product_Config_Customer_v0.Services
 
         #region Helpers
 
-        /// <summary>
-        /// Creates a DB context for the given domain using _dbResolver.
-        /// </summary>
-        private ApplicationDbContext CreateDbContext(string domainName)
-        {
-            if (!_dbResolver.TryGetConnectionString(domainName, out var connString))
-                throw new Exception($"Cannot find connection string for domain {domainName}");
-
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(connString, ServerVersion.AutoDetect(connString))
-                .Options;
-
-            return new ApplicationDbContext(options);
-        }
-
-        /// <summary>
-        /// Parses JSON response and updates the request entity.
-        /// </summary>
         private void UpdateRequestFromResponse(ParentAPI_Model_Request request, string rawJson, string apiStatus)
         {
             request.ApiResponse = rawJson;

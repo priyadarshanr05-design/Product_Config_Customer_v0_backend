@@ -1,28 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class User_05_Account_Delete_Service
+    public class User_05_Account_Delete_Service : IUser_05_Account_Delete_Service
     {
-        private readonly IUser_Login_DatabaseResolver _dbResolver;
+        private readonly ITenantDbContextFactory _dbFactory;
 
-        public User_05_Account_Delete_Service(IUser_Login_DatabaseResolver dbResolver)
+
+        public User_05_Account_Delete_Service(ITenantDbContextFactory dbFactory)
         {
-            _dbResolver = dbResolver;
+            _dbFactory = dbFactory;
         }
 
         public async Task<User_05_Account_Delete_Response_DTO> DeleteAsync(string tenant, int userId)
         {
-            if (!_dbResolver.TryGetConnectionString(tenant, out var connString))
-                return new User_05_Account_Delete_Response_DTO { Success = false, Message = "Unknown domain." };
-
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(connString, ServerVersion.AutoDetect(connString))
-                .Options;
-
-            await using var db = new ApplicationDbContext(options);
+            await using var db = _dbFactory.CreateDbContext(tenant);
 
             var user = await db.Users.FindAsync(userId);
             if (user == null)

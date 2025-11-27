@@ -4,9 +4,10 @@ using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.Data.Seeders;
 using Product_Config_Customer_v0.DomainManagement.Entity;
 using Product_Config_Customer_v0.Models.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 using System.Text.RegularExpressions;
 
-public class Domain_02_Add_Service
+public class Domain_02_Add_Service : IDomain_02_Add_Service 
 {
     private readonly DomainManagementDbContext _domainDb;
     private readonly IConfiguration _config;

@@ -1,15 +1,16 @@
 ﻿using Microsoft.Extensions.Logging;
 using Product_Config_Customer_v0.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class FeaturePage_01_Service
+    public class FeaturePage_01_Service : IFeaturePage_01_Service
     {
-        private readonly Users_05_InternalEmailDomain_Check_Service _checkService;
+        private readonly IUsers_05_InternalEmailDomain_Check_Service _checkService;
         private readonly ILogger<FeaturePage_01_Service> _logger;
 
         public FeaturePage_01_Service(
-            Users_05_InternalEmailDomain_Check_Service checkService,
+            IUsers_05_InternalEmailDomain_Check_Service checkService,
             ILogger<FeaturePage_01_Service> logger)
         {
             _checkService = checkService;

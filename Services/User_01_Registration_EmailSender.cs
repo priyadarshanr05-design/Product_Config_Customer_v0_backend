@@ -3,13 +3,10 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using DotNetEnv;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public interface IEmailSender
-    {
-        Task SendAsync(string to, string subject, string body);
-    }
 
     public class SmtpEmailSender : IEmailSender
     {

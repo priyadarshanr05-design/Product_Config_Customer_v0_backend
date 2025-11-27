@@ -2,20 +2,21 @@
 using Microsoft.Extensions.Logging;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 using System.Text.RegularExpressions;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Users_05_InternalEmailDomain_Check_Service
+    public class Users_05_InternalEmailDomain_Check_Service : IUsers_05_InternalEmailDomain_Check_Service
     {
-        private readonly IUser_Login_DatabaseResolver _dbResolver;
+        private readonly ITenantDbContextFactory _dbFactory;
         private readonly ILogger<Users_05_InternalEmailDomain_Check_Service> _logger;
 
         public Users_05_InternalEmailDomain_Check_Service(
-            IUser_Login_DatabaseResolver dbResolver,
+            ITenantDbContextFactory dbFactory,
             ILogger<Users_05_InternalEmailDomain_Check_Service> logger)
         {
-            _dbResolver = dbResolver;
+            _dbFactory = dbFactory;
             _logger = logger;
         }
 
@@ -65,21 +66,7 @@ namespace Product_Config_Customer_v0.Services
 
             try
             {
-                // Resolve tenant DB connection
-                if (!_dbResolver.TryGetConnectionString(dto.TenantDomain, out var conn))
-                {
-                    resp.IsInternal = false;
-                    resp.Role = "ExternalUser";
-                    resp.Message = $"Unknown tenant '{dto.TenantDomain}'.";
-                    _logger.LogWarning("InternalDomainCheck: unknown tenant {Tenant}", dto.TenantDomain);
-                    return resp;
-                }
-
-                var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                    .UseMySql(conn, ServerVersion.AutoDetect(conn))
-                    .Options;
-
-                await using var db = new ApplicationDbContext(options);
+                await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
                 // Check table for exact match (case-insensitive)
                 var exists = await db.InternalUsersEmailDomains

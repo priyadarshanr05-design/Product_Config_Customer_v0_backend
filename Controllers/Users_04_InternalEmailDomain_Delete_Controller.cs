@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 [ApiController]
 [Route("api/internalemaildomain/delete")]
 public class Users_04_InternalEmailDomain_Delete_Controller : ControllerBase
 {
-    private readonly Users_04_InternalEmailDomain_Delete_Service _service;
+    private readonly IUsers_04_InternalEmailDomain_Delete_Service _service;
 
     public Users_04_InternalEmailDomain_Delete_Controller(
-        Users_04_InternalEmailDomain_Delete_Service service)
+        IUsers_04_InternalEmailDomain_Delete_Service service)
     {
         _service = service;
     }

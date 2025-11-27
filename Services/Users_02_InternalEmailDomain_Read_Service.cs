@@ -3,19 +3,20 @@ using Microsoft.Extensions.Logging;
 using MySqlConnector;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Users_02_InternalEmailDomain_Read_Service
+    public class Users_02_InternalEmailDomain_Read_Service : IUsers_02_InternalEmailDomain_Read_Service
     {
-        private readonly IUser_Login_DatabaseResolver _resolver;
+        private readonly ITenantDbContextFactory _dbFactory;
         private readonly ILogger<Users_02_InternalEmailDomain_Read_Service> _logger;
 
         public Users_02_InternalEmailDomain_Read_Service(
-            IUser_Login_DatabaseResolver resolver,
+            ITenantDbContextFactory dbFactory,
             ILogger<Users_02_InternalEmailDomain_Read_Service> logger)
         {
-            _resolver = resolver;
+            _dbFactory = dbFactory;
             _logger = logger;
         }
 
@@ -32,25 +33,10 @@ namespace Product_Config_Customer_v0.Services
 
             _logger.LogInformation("Starting InternalEmailDomain READ for Tenant: {Tenant}", dto.TenantDomain);
 
-
-            // -------------------- TENANT RESOLUTION --------------------
-            if (!_resolver.TryGetConnectionString(dto.TenantDomain, out var conn))
-            {
-                _logger.LogWarning("Tenant resolution failed for domain: {Tenant}", dto.TenantDomain);
-                throw new Exception($"Unknown tenant '{dto.TenantDomain}'");
-            }
-
-            _logger.LogInformation("Resolved DB connection for tenant {Tenant}", dto.TenantDomain);
-
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(conn, ServerVersion.AutoDetect(conn))
-                .Options;
-
-
-            // -------------------- DATABASE QUERY --------------------
+                        
             try
             {
-                await using var db = new ApplicationDbContext(options);
+                await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
                 var list = await db.InternalUsersEmailDomains
                     .AsNoTracking()

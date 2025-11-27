@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Controllers
 {
@@ -8,9 +9,9 @@ namespace Product_Config_Customer_v0.Controllers
     [Route("api/user/forgetpassword")]
     public class User_04_ForgetPassword_Controller : ControllerBase
     {
-        private readonly User_04_ForgetPassword_Service _service;
+        private readonly IUser_04_ForgetPassword_Service _service;
 
-        public User_04_ForgetPassword_Controller(User_04_ForgetPassword_Service service)
+        public User_04_ForgetPassword_Controller(IUser_04_ForgetPassword_Service service)
         {
             _service = service;
         }

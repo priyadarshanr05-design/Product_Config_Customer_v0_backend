@@ -2,17 +2,18 @@
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.Models.Entity;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 
-public class ParentAPI_02_Request_Status_Service
+public class ParentAPI_02_Request_Status_Service : IParentAPI_02_Request_Status_Service
 {
-    private readonly IUser_Login_DatabaseResolver _dbResolver;
-    private readonly ParentAPI_01_GenToken_Service _domainService;
+    private readonly ITenantDbContextFactory _dbFactory;
+    private readonly IParentAPI_01_GenToken_Service _domainService;
 
     public ParentAPI_02_Request_Status_Service(
-        IUser_Login_DatabaseResolver dbResolver,
-        ParentAPI_01_GenToken_Service domainService)
+        ITenantDbContextFactory dbFactory,
+        IParentAPI_01_GenToken_Service domainService)
     {
-        _dbResolver = dbResolver;
+        _dbFactory = dbFactory;
         _domainService = domainService;
     }
 
@@ -20,14 +21,7 @@ public class ParentAPI_02_Request_Status_Service
     {
         domainName = domainName.ToLower();
 
-        if (!_dbResolver.TryGetConnectionString(domainName, out var connString))
-            throw new ArgumentException($"Unknown domain: {domainName}");
-
-        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseMySql(connString, ServerVersion.AutoDetect(connString))
-            .Options;
-
-        await using var db = new ApplicationDbContext(options);
+        await using var db = _dbFactory.CreateDbContext(domainName);
 
         var request = await db.ParentAPI_Model_Requests
             .FirstOrDefaultAsync(r => r.RequestId == requestId);

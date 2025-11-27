@@ -1,89 +1,94 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Users_04_InternalEmailDomain_Delete_Service
+    public class Users_04_InternalEmailDomain_Delete_Service : IUsers_04_InternalEmailDomain_Delete_Service
     {
-        private readonly IUser_Login_DatabaseResolver _resolver;
+        private readonly ITenantDbContextFactory _dbFactory;
         private readonly ILogger<Users_04_InternalEmailDomain_Delete_Service> _logger;
 
         public Users_04_InternalEmailDomain_Delete_Service(
-            IUser_Login_DatabaseResolver resolver,
+            ITenantDbContextFactory dbFactory,
             ILogger<Users_04_InternalEmailDomain_Delete_Service> logger)
         {
-            _resolver = resolver;
+            _dbFactory = dbFactory;
             _logger = logger;
         }
 
         public async Task<Users_04_InternalEmailDomain_Delete_Response_DTO> DeleteAsync(
-            Users_04_InternalEmailDomain_Delete_DTO dto)
+    Users_04_InternalEmailDomain_Delete_DTO dto)
         {
             var response = new Users_04_InternalEmailDomain_Delete_Response_DTO
             {
                 TenantDomain = dto.TenantDomain
             };
 
-            if (!_resolver.TryGetConnectionString(dto.TenantDomain, out var conn))
+            if (string.IsNullOrWhiteSpace(dto.TenantDomain))
             {
-                foreach (var d in dto.Domains)
+                response.Results.Add(new Users_04_InternalEmailDomain_Delete_Response_Item_DTO
                 {
-                    response.Results.Add(new Users_04_InternalEmailDomain_Delete_Response_Item_DTO
-                    {
-                        Id = d.Id,
-                        Status = "Error",
-                        Message = $"Unknown tenant '{dto.TenantDomain}'"
-                    });
-                }
+                    Status = "Error",
+                    Message = "Tenant domain is required"
+                });
                 return response;
             }
 
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(conn, ServerVersion.AutoDetect(conn))
-                .Options;
-
-            using var db = new ApplicationDbContext(options);
-
-            foreach (var item in dto.Domains)
+            try
             {
-                var res = new Users_04_InternalEmailDomain_Delete_Response_Item_DTO
-                {
-                    Id = item.Id
-                };
+                await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
-                try
+                foreach (var item in dto.Domains)
                 {
-                    var record = await db.InternalUsersEmailDomains
-                        .FirstOrDefaultAsync(x => x.Id == item.Id);
-
-                    if (record == null)
+                    var res = new Users_04_InternalEmailDomain_Delete_Response_Item_DTO
                     {
-                        res.Status = "NotFound";
-                        res.Message = "Record not found";
-                    }
-                    else
+                        Id = item.Id
+                    };
+
+                    try
                     {
-                        res.EmailDomain = record.EmailDomain;
+                        var record = await db.InternalUsersEmailDomains
+                            .FirstOrDefaultAsync(x => x.Id == item.Id);
 
-                        db.InternalUsersEmailDomains.Remove(record);
-                        await db.SaveChangesAsync();
+                        if (record == null)
+                        {
+                            res.Status = "NotFound";
+                            res.Message = "Record not found";
+                        }
+                        else
+                        {
+                            res.EmailDomain = record.EmailDomain;
 
-                        res.Status = "Deleted";
+                            db.InternalUsersEmailDomains.Remove(record);
+                            await db.SaveChangesAsync();
+
+                            res.Status = "Deleted";
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        res.Status = "Error";
+                        res.Message = ex.Message;
+                        _logger.LogError(ex, "Error deleting email domain Id {Id}", item.Id);
+                    }
+
+                    response.Results.Add(res);
                 }
-                catch (Exception ex)
+            }
+            catch (InvalidOperationException ex)
+            {
+                // If TenantDbContextFactory throws
+                response.Results.Add(new Users_04_InternalEmailDomain_Delete_Response_Item_DTO
                 {
-                    res.Status = "Error";
-                    res.Message = ex.Message;
-
-                    _logger.LogError(ex, "Error deleting email domain Id {Id}", item.Id);
-                }
-
-                response.Results.Add(res);
+                    Status = "Error",
+                    Message = ex.Message
+                });
             }
 
             return response;
         }
+
     }
 }

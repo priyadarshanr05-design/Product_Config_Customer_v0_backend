@@ -1,34 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Product_Config_Customer_v0.Data;
-using Product_Config_Customer_v0.Models.Entity;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 using Product_Config_Customer_v0.Shared;
-using Product_Config_Customer_v0.Shared.Helpers;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 [ApiController]
 [Route("api/modelrequest")]
 public class ParentAPI_01_Model_Request_Controller : ControllerBase
 {
-    private readonly IUser_Login_DatabaseResolver _dbResolver;
-    private readonly User_03_Login_Jwt_Token_Service _jwtTokenService;
-    private readonly ParentAPI_01_ProcessRequest_Service _processRequestService;
-    private readonly DomainManagementDbContext _domainDb;
+    private readonly ITenantDbContextFactory _dbFactory;
+    private readonly IParentAPI_01_ProcessRequest_Service _processRequestService;
     private readonly IBackgroundJobQueue _queue;
+    private readonly ParentAPI_01_CheckAllowAnonymous _checkAnonymousHelper;
 
     public ParentAPI_01_Model_Request_Controller(
-        IUser_Login_DatabaseResolver dbResolver,
-        User_03_Login_Jwt_Token_Service jwtTokenService,
-        ParentAPI_01_ProcessRequest_Service processRequestService,
-        DomainManagementDbContext domainDb,
-        IBackgroundJobQueue queue)
+        ITenantDbContextFactory dbFactory,
+        IParentAPI_01_ProcessRequest_Service processRequestService,
+        IBackgroundJobQueue queue,
+        ParentAPI_01_CheckAllowAnonymous checkAnonymousHelper)
     {
-        _dbResolver = dbResolver;
-        _jwtTokenService = jwtTokenService;
+        _dbFactory = dbFactory;
         _processRequestService = processRequestService;
-        _domainDb = domainDb;
         _queue = queue;
+        _checkAnonymousHelper = checkAnonymousHelper;
     }
 
     [HttpPost]
@@ -41,33 +38,22 @@ public class ParentAPI_01_Model_Request_Controller : ControllerBase
         if (string.IsNullOrWhiteSpace(domainName))
             return BadRequest("DomainName is required.");
 
-        if (!_dbResolver.TryGetConnectionString(domainName, out _))
-            return BadRequest($"Unknown domain: {domainName}");
-
-        // Check anonymous access
-        var domain = await _domainDb.AnonymousRequestControls
-            .FirstOrDefaultAsync(d => d.DomainName.ToLower() == domainName);
-        bool allowAnonymous = domain?.AllowAnonymousRequest == true;
-
-        string? userId = null;
-
-        // Validate bearer token if anonymous not allowed
-        if (!allowAnonymous)
+        string? userId;
+        try
         {
-            if (!Request.Headers.TryGetValue("Authorization", out var authHeader) || string.IsNullOrWhiteSpace(authHeader))
-                return Unauthorized("This domain requires a Bearer token in the Authorization header.");
-
-            var token = authHeader.ToString().Replace("Bearer ", "").Trim();
-            if (string.IsNullOrEmpty(token))
-                return Unauthorized("Invalid Bearer token.");
-
-            userId = _jwtTokenService.ValidateToken(token);
-            if (string.IsNullOrEmpty(userId))
-                return Unauthorized("Invalid or expired token.");
+            userId = await _checkAnonymousHelper.GetUserIdOrThrowAsync(domainName);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
         }
 
         // Submit request via service
-        var result = await _processRequestService.SubmitRequestAsync(root, domainName, userId, _queue);
+        var result = await _processRequestService.SubmitRequestAsync(root, domainName, userId, _queue, _dbFactory);
         return Ok(result);
     }
 }

@@ -2,10 +2,11 @@
 using Microsoft.Extensions.Logging;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.Models.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Domain_04_Update_Service
+    public class Domain_04_Update_Service : IDomain_04_Update_Service
     {
         private readonly DomainManagementDbContext _domainDb;
         private readonly ILogger<Domain_04_Update_Service> _logger;
@@ -18,22 +19,21 @@ namespace Product_Config_Customer_v0.Services
             _logger = logger;
         }
 
-        public async Task<(bool success, string message)> UpdateDomainAsync(Domain_04_Update request)
+        public async Task<(bool success, string message)> UpdateDomainAsync(Domain_04_Update_DTO request)
         {
-            if (string.IsNullOrWhiteSpace(request.DomainName))
-                return (false, "Domain name is required");
-
-            string normalized =
-                char.ToUpper(request.DomainName[0]) + request.DomainName.Substring(1).ToLower();
-
-            var domain = await _domainDb.AnonymousRequestControls
-                                        .FirstOrDefaultAsync(x => x.DomainName == normalized);
-
-            if (domain == null)
-                return (false, $"Domain '{normalized}' not found");
+            if (!request.Id.HasValue)
+                return (false, "Id is required to update a domain");
 
             try
             {
+                // Fetch domain by Id only
+                var domain = await _domainDb.AnonymousRequestControls
+                    .FirstOrDefaultAsync(x => x.Id == request.Id.Value);
+
+                if (domain == null)
+                    return (false, $"Domain with Id {request.Id.Value} not found");
+
+                // Update fields if provided
                 if (request.AllowAnonymousRequest.HasValue)
                     domain.AllowAnonymousRequest = request.AllowAnonymousRequest.Value;
 
@@ -41,11 +41,11 @@ namespace Product_Config_Customer_v0.Services
 
                 await _domainDb.SaveChangesAsync();
 
-                return (true, $"Domain '{normalized}' updated successfully.");
+                return (true, $"Domain '{domain.DomainName}' updated successfully.");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error updating domain {domain}", normalized);
+                _logger.LogError(ex, "Error updating domain with Id {Id}", request.Id);
                 return (false, "Error occurred while updating domain");
             }
         }

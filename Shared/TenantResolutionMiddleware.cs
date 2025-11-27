@@ -23,7 +23,7 @@ public class TenantResolutionMiddleware
         _config = config;
     }
 
-    public async Task InvokeAsync(HttpContext context, IUser_Login_TenantProvider tenantProvider)
+    public async Task InvokeAsync(HttpContext context, IUser_03_Login_TenantProvider tenantProvider)
     {
         try
         {

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 using System.Security.Claims;
 
 namespace Product_Config_Customer_v0.Controllers
@@ -10,12 +11,12 @@ namespace Product_Config_Customer_v0.Controllers
     [Route("api/user/delete")]
     public class User_05_Account_Delete_Controller : ControllerBase
     {
-        private readonly User_05_Account_Delete_Service _service;
-        private readonly IUser_Login_TenantProvider _tenantProvider;
+        private readonly IUser_05_Account_Delete_Service _service;
+        private readonly IUser_03_Login_TenantProvider _tenantProvider;
 
         public User_05_Account_Delete_Controller(
-            User_05_Account_Delete_Service service,
-            IUser_Login_TenantProvider tenantProvider)
+            IUser_05_Account_Delete_Service service,
+            IUser_03_Login_TenantProvider tenantProvider)
         {
             _service = service;
             _tenantProvider = tenantProvider;

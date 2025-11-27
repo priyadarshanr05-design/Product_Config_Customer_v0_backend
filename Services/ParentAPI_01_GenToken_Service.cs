@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Product_Config_Customer_v0.Data;
+using Product_Config_Customer_v0.Services.Interfaces;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class ParentAPI_01_GenToken_Service
+    public class ParentAPI_01_GenToken_Service : IParentAPI_01_GenToken_Service
     {
         private readonly DomainManagementDbContext _dbContext;
         private readonly IHttpClientFactory _httpClientFactory;

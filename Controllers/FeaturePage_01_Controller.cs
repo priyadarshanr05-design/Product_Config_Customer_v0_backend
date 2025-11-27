@@ -2,16 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 using System.Security.Claims;
 
 [ApiController]
 [Route("api/feature/01")]
 public class FeaturePage_01_Controller : ControllerBase
 {
-    private readonly FeaturePage_01_Service _service;
+    private readonly IFeaturePage_01_Service _service;
     private readonly ILogger<FeaturePage_01_Controller> _logger;
 
-    public FeaturePage_01_Controller(FeaturePage_01_Service service, ILogger<FeaturePage_01_Controller> logger)
+    public FeaturePage_01_Controller(IFeaturePage_01_Service service, ILogger<FeaturePage_01_Controller> logger)
     {
         _service = service;
         _logger = logger;

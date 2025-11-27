@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 [ApiController]
 [Route("api/internalemaildomain/check")]
 public class Users_05_InternalEmailDomain_Check_Controller : ControllerBase
 {
-    private readonly Users_05_InternalEmailDomain_Check_Service _service;
+    private readonly IUsers_05_InternalEmailDomain_Check_Service _service;
     private readonly ILogger<Users_05_InternalEmailDomain_Check_Controller> _logger;
 
     public Users_05_InternalEmailDomain_Check_Controller(
-        Users_05_InternalEmailDomain_Check_Service service,
+        IUsers_05_InternalEmailDomain_Check_Service service,
         ILogger<Users_05_InternalEmailDomain_Check_Controller> logger)
     {
         _service = service;

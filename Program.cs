@@ -8,6 +8,7 @@ using Product_Config_Customer_v0.Models.Entity;
 using Product_Config_Customer_v0.Repositories;
 using Product_Config_Customer_v0.Repositories.Interfaces;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 using Product_Config_Customer_v0.Shared;
 using Product_Config_Customer_v0.Workers;
 using System.Net;
@@ -82,19 +83,13 @@ builder.Services.AddCors(options =>
 builder.Services.AddHttpClient();
 builder.Services.AddMemoryCache();
 
-// Configure multi-tenant DbContext per request
-builder.Services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
+
+builder.Services.AddDbContext<DomainManagementDbContext>(options =>
 {
-    var tenantProvider = serviceProvider.GetRequiredService<IUser_Login_TenantProvider>();
-    var dbResolver = serviceProvider.GetRequiredService<IUser_Login_DatabaseResolver>();
-
-    var tenant = tenantProvider.TenantKey ?? "Default";
-
-    if (!dbResolver.TryGetConnectionString(tenant, out var connString))
-        throw new Exception($"Unknown tenant {tenant}");
-
-    options.UseMySql(connString, ServerVersion.AutoDetect(connString));
+    var conn = builder.Configuration.GetConnectionString("DomainManagementDb");
+    options.UseMySql(conn, ServerVersion.AutoDetect(conn));
 });
+
 
 var app = builder.Build();
 
@@ -117,6 +112,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("AllowAll");
 app.MapControllers();
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<SeederService>();
+    await seeder.MigrateAndSeedAsync();
+}
 
 using (var scope = app.Services.CreateScope())
 {

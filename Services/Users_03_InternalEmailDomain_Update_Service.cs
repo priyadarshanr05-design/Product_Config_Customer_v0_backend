@@ -1,19 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Product_Config_Customer_v0.Data;
 using Product_Config_Customer_v0.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class Users_03_InternalEmailDomain_Update_Service
+    public class Users_03_InternalEmailDomain_Update_Service : IUsers_03_InternalEmailDomain_Update_Service
     {
-        private readonly IUser_Login_DatabaseResolver _resolver;
+        private readonly ITenantDbContextFactory _dbFactory;
         private readonly ILogger<Users_03_InternalEmailDomain_Update_Service> _logger;
 
         public Users_03_InternalEmailDomain_Update_Service(
-            IUser_Login_DatabaseResolver resolver,
+             ITenantDbContextFactory dbFactory,
             ILogger<Users_03_InternalEmailDomain_Update_Service> logger)
         {
-            _resolver = resolver;
+            _dbFactory = dbFactory;
             _logger = logger;
         }
 
@@ -25,25 +26,7 @@ namespace Product_Config_Customer_v0.Services
                 TenantDomain = dto.TenantDomain
             };
 
-            if (!_resolver.TryGetConnectionString(dto.TenantDomain, out var conn))
-            {
-                foreach (var d in dto.Domains)
-                {
-                    response.Results.Add(new Users_03_InternalEmailDomain_Update_Response_Item_DTO
-                    {
-                        Id = d.Id,
-                        Status = "Error",
-                        Message = $"Unknown tenant '{dto.TenantDomain}'"
-                    });
-                }
-                return response;
-            }
-
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(conn, ServerVersion.AutoDetect(conn))
-                .Options;
-
-            using var db = new ApplicationDbContext(options);
+            await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
             foreach (var item in dto.Domains)
             {

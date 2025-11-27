@@ -5,25 +5,27 @@ using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Shared.Helpers;
 using Product_Config_Customer_v0.Models;
 using Product_Config_Customer_v0.Models.Configuration;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class User_01_Register_Service
+    public class User_01_Register_Service : IUser_01_Register_Service
     {
-        private readonly IUser_Login_DatabaseResolver _dbResolver;
-        private readonly Users_05_InternalEmailDomain_Check_Service _emailCheck;
-        private readonly ILogger<User_01_Register_Service> _logger;
+        private readonly ITenantDbContextFactory _dbFactory;
+
+        private readonly IUsers_05_InternalEmailDomain_Check_Service _emailCheck;
+        private readonly ILogger<IUser_01_Register_Service> _logger;
         private readonly IEmailSender _email;
 
         private const int VerificationOtpExpiryMinutes = 15; // OTP validity
 
         public User_01_Register_Service(
-            IUser_Login_DatabaseResolver dbResolver,
-            Users_05_InternalEmailDomain_Check_Service emailCheck,
-            ILogger<User_01_Register_Service> logger,
+            ITenantDbContextFactory dbFactory,
+            IUsers_05_InternalEmailDomain_Check_Service emailCheck,
+            ILogger<IUser_01_Register_Service> logger,
             IEmailSender email)
         {
-            _dbResolver = dbResolver;
+            _dbFactory = dbFactory;
             _emailCheck = emailCheck;
             _logger = logger;
             _email = email;
@@ -35,23 +37,21 @@ namespace Product_Config_Customer_v0.Services
         {
             var resp = new User_01_Register_Response_DTO();
 
-            if (!_dbResolver.TryGetConnectionString(dto.TenantDomain, out var conn))
-            {
-                resp.Success = false;
-                resp.Message = "Invalid tenant domain.";
-                return resp;
-            }
-
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseMySql(conn, ServerVersion.AutoDetect(conn))
-                .Options;
-
-            await using var db = new ApplicationDbContext(options);
+            await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
             if (await db.Users.AnyAsync(x => x.Email == dto.Email, cancellationToken))
             {
                 resp.Success = false;
                 resp.Message = "Email already exists.";
+                return resp;
+            }
+
+            // Password validation 
+            var passwordCheck = PasswordValidator.Validate(dto.Password);
+            if (!passwordCheck.IsValid)
+            {
+                resp.Success = false;
+                resp.Message = passwordCheck.Message;
                 return resp;
             }
 

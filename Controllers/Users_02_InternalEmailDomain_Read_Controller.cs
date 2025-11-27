@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 [ApiController]
 [Route("api/internalemaildomain/read")]
 public class Users_02_InternalEmailDomain_Read_Controller : ControllerBase
 {
-    private readonly Users_02_InternalEmailDomain_Read_Service _service;
+    private readonly IUsers_02_InternalEmailDomain_Read_Service _service;
     private readonly ILogger<Users_02_InternalEmailDomain_Read_Controller> _logger;
 
     public Users_02_InternalEmailDomain_Read_Controller(
-        Users_02_InternalEmailDomain_Read_Service service,
+        IUsers_02_InternalEmailDomain_Read_Service service,
         ILogger<Users_02_InternalEmailDomain_Read_Controller> logger)
     {
         _service = service;

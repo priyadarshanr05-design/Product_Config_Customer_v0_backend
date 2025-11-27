@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Product_Config_Customer_v0.Models.DTO;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 [ApiController]
 [Authorize(Roles = "admin")]
 [Route("api/admin/domain")]
 public class Domain_02_Add_Controller : ControllerBase
 {
-    private readonly Domain_02_Add_Service _service;
+    private readonly IDomain_02_Add_Service _service;
 
-    public Domain_02_Add_Controller(Domain_02_Add_Service service)
+    public Domain_02_Add_Controller(IDomain_02_Add_Service service)
     {
         _service = service;
     }

@@ -51,7 +51,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_04_Update",
+        "Type": "Product_Config_Customer_v0.Models.DTO.Domain_04_Update_DTO",
         "IsRequired": true
       }
     ],

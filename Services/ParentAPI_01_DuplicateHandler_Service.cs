@@ -2,22 +2,23 @@
 using Product_Config_Customer_v0.Models.Entity;
 using Product_Config_Customer_v0.Repositories.Interfaces;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 using Product_Config_Customer_v0.Shared;
 using Product_Config_Customer_v0.Workers;
 using System.Text.Json;
 
 namespace Product_Config_Customer_v0.Services
 {
-    public class ParentAPI_01_DuplicateHandler_Service
+    public class ParentAPI_01_DuplicateHandler_Service : IParentAPI_01_DuplicateHandler_Service
     {
         private readonly IRequestModelRepository _repository;
-        private readonly ParentAPI_01_ProcessRequest_Service _externalHandler;
+        private readonly IParentAPI_01_ProcessRequest_Service _externalHandler;
         private readonly IBackgroundJobQueue _queue;
         private readonly ILogger<ParentAPI_01_DuplicateHandler_Service> _logger;
 
         public ParentAPI_01_DuplicateHandler_Service(
             IRequestModelRepository repository,
-            ParentAPI_01_ProcessRequest_Service externalHandler,
+            IParentAPI_01_ProcessRequest_Service externalHandler,
             IBackgroundJobQueue queue,
             ILogger<ParentAPI_01_DuplicateHandler_Service> logger)
         {

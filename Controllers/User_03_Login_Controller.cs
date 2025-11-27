@@ -2,14 +2,15 @@
 using Product_Config_Customer_v0.DTO;
 using Product_Config_Customer_v0.Models.DTO;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 [ApiController]
 [Route("api/auth/login")]
 public class User_03_Login_Controller : ControllerBase
 {
-    private readonly User_03_Login_Service _service;
+    private readonly IUser_03_Login_Service _service;
 
-    public User_03_Login_Controller(User_03_Login_Service service)
+    public User_03_Login_Controller(IUser_03_Login_Service service)
     {
         _service = service;
     }

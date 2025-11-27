@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product_Config_Customer_v0.Models.DTO;
 using Product_Config_Customer_v0.Services;
+using Product_Config_Customer_v0.Services.Interfaces;
 
 [ApiController]
 [Route("api/admin/login")]
 public class Domain_01_AdminLogin_Controller : ControllerBase
 {
-    private readonly Domain_01_AdminLogin_Service _service;
+    private readonly IDomain_01_AdminLogin_Service _service;
 
-    public Domain_01_AdminLogin_Controller(Domain_01_AdminLogin_Service service)
+    public Domain_01_AdminLogin_Controller(IDomain_01_AdminLogin_Service service)
     {
         _service = service;
     }
