@@ -12,7 +12,6 @@ namespace Product_Config_Customer_v0.Services
     public class User_01_Register_Service : IUser_01_Register_Service
     {
         private readonly ITenantDbContextFactory _dbFactory;
-
         private readonly IUsers_05_InternalEmailDomain_Check_Service _emailCheck;
         private readonly ILogger<IUser_01_Register_Service> _logger;
         private readonly IEmailSender _email;
@@ -39,14 +38,45 @@ namespace Product_Config_Customer_v0.Services
 
             await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
-            if (await db.Users.AnyAsync(x => x.Email == dto.Email, cancellationToken))
+            // Check if user already exists
+            var existingUser = await db.Users
+                .Include(u => u.VerificationCodes)
+                .FirstOrDefaultAsync(x => x.Email == dto.Email, cancellationToken);
+
+            if (existingUser != null)
             {
-                resp.Success = false;
-                resp.Message = "Email already exists.";
-                return resp;
+                if (existingUser.EmailVerified)
+                {
+                    resp.Success = false;
+                    resp.Message = "Email already exists.";
+                    return resp;
+                }
+                else
+                {
+                    // User exists but not verified, resend OTP
+                    var otp = new Random().Next(100000, 999999).ToString();
+                    var verificationCode = new User_Login_VerificationCode
+                    {
+                        UserId = existingUser.Id,
+                        Code = otp,
+                        Expiry = DateTime.UtcNow.AddMinutes(VerificationOtpExpiryMinutes)
+                    };
+
+                    db.VerificationCodes.Add(verificationCode);
+                    await db.SaveChangesAsync(cancellationToken);
+
+                    await _email.SendAsync(existingUser.Email, "Email Verification",
+                        $"Hello {existingUser.Username},<br>Your verification code is: <b>{otp}</b>.<br>It will expire in 15 minutes.");
+
+                    resp.Success = true;
+                    resp.Message = "Verification OTP resent to your email.";
+                    resp.AssignedRole = existingUser.Role;
+
+                    return resp;
+                }
             }
 
-            // Password validation 
+            // Password validation for new user
             var passwordCheck = PasswordValidator.Validate(dto.Password);
             if (!passwordCheck.IsValid)
             {
@@ -55,7 +85,7 @@ namespace Product_Config_Customer_v0.Services
                 return resp;
             }
 
-            // Determine internal/external
+            // Determine internal/external role
             var domainResult = await _emailCheck.CheckAsync(
                 new Users_05_InternalEmailDomain_Check_DTO
                 {
@@ -68,6 +98,7 @@ namespace Product_Config_Customer_v0.Services
                 ? AppRoles.InternalUser
                 : AppRoles.ExternalUser;
 
+            // Create new user
             var user = new User_Login_User
             {
                 Username = dto.Username,
@@ -80,21 +111,21 @@ namespace Product_Config_Customer_v0.Services
             db.Users.Add(user);
             await db.SaveChangesAsync(cancellationToken);
 
-            // Generate verification code (OTP)
-            var otp = new Random().Next(100000, 999999).ToString();
-            var verificationCode = new User_Login_VerificationCode
+            // Generate OTP for new user
+            var newOtp = new Random().Next(100000, 999999).ToString();
+            var verificationCodeNew = new User_Login_VerificationCode
             {
                 UserId = user.Id,
-                Code = otp,
+                Code = newOtp,
                 Expiry = DateTime.UtcNow.AddMinutes(VerificationOtpExpiryMinutes)
             };
 
-            db.VerificationCodes.Add(verificationCode);
+            db.VerificationCodes.Add(verificationCodeNew);
             await db.SaveChangesAsync(cancellationToken);
 
             // Send verification email
             await _email.SendAsync(user.Email, "Email Verification",
-                $"Hello {user.Username},<br>Your verification code is: <b>{otp}</b>.<br>It will expire in 15 minutes.");
+                $"Hello {user.Username},<br>Your verification code is: <b>{newOtp}</b>.<br>It will expire in 15 minutes.");
 
             resp.Success = true;
             resp.Message = "User registered successfully. Verification OTP sent to email.";
