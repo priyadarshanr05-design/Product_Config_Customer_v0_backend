@@ -39,8 +39,7 @@ namespace Product_Config_Customer_v0.Services
             await using var db = _dbFactory.CreateDbContext(dto.TenantDomain);
 
             // Check if user already exists
-            var existingUser = await db.Users
-                .Include(u => u.VerificationCodes)
+            var existingUser = await db.Users                
                 .FirstOrDefaultAsync(x => x.Email == dto.Email, cancellationToken);
 
             if (existingUser != null)
@@ -69,7 +68,7 @@ namespace Product_Config_Customer_v0.Services
                         $"Hello {existingUser.Username},<br>Your verification code is: <b>{otp}</b>.<br>It will expire in 15 minutes.");
 
                     resp.Success = true;
-                    resp.Message = "Verification OTP resent to your email.";
+                    resp.Message = "Email already registered but not verified. A new OTP has been sent";
                     resp.AssignedRole = existingUser.Role;
 
                     return resp;

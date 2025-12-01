@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Product_Config_Customer_v0.csproj": {}
+    "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Product_Config_Customer_v0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Product_Config_Customer_v0.csproj": {
+    "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Product_Config_Customer_v0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Product_Config_Customer_v0.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Product_Config_Customer_v0.csproj",
         "projectName": "Product_Config_Customer_v0",
-        "projectPath": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\Product_Config_Customer_v0.csproj",
+        "projectPath": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Product_Config_Customer_v0.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\Backend\\obj\\",
         "projectStyle": "PackageReference",

@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\user_01_register_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\user_01_register_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\user_02_verification_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\user_02_verification_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\.env.development||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:.env.development||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\.env.production||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:.env.production||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\user_01_register_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\user_01_register_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\featurepage_01_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\featurepage_01_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\user_02_verification_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\user_02_verification_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\user_01_registration_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\services\\parentapi_01_gentoken_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:services\\parentapi_01_gentoken_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\controllers\\featurepage_01_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|solutionrelative:controllers\\featurepage_01_controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6976C3F9-B10A-4803-A850-87C26574621E}|Product_Config_Customer_v0.csproj|c:\\users\\user\\source\\repos\\deployments\\product_config_customer_v0\\backend\\models\\dto\\domain_05_delete_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -174,40 +174,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "User_01_Register_Service.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\User_01_Register_Service.cs",
-              "RelativeDocumentMoniker": "Services\\User_01_Register_Service.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\User_01_Register_Service.cs",
-              "RelativeToolTip": "Services\\User_01_Register_Service.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAAAIkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T07:47:27.054Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": ".env.development",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\.env.development",
-              "RelativeDocumentMoniker": ".env.development",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\.env.development",
-              "RelativeToolTip": ".env.development",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-27T13:20:17.363Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ParentAPI_01_Model_Request_Controller.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\ParentAPI_01_Model_Request_Controller.cs",
               "RelativeDocumentMoniker": "Controllers\\ParentAPI_01_Model_Request_Controller.cs",
@@ -219,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ParentAPI_02_Request_Status_Controller.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\ParentAPI_02_Request_Status_Controller.cs",
               "RelativeDocumentMoniker": "Controllers\\ParentAPI_02_Request_Status_Controller.cs",
@@ -231,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "ParentAPI_02_Request_Status_Service.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\ParentAPI_02_Request_Status_Service.cs",
               "RelativeDocumentMoniker": "Services\\ParentAPI_02_Request_Status_Service.cs",
@@ -243,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ParentAPI_01_ProcessRequest_Service.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\ParentAPI_01_ProcessRequest_Service.cs",
               "RelativeDocumentMoniker": "Services\\ParentAPI_01_ProcessRequest_Service.cs",
@@ -255,19 +234,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "User_02_Verification_Controller.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\User_02_Verification_Controller.cs",
-              "RelativeDocumentMoniker": "Controllers\\User_02_Verification_Controller.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\User_02_Verification_Controller.cs",
-              "RelativeToolTip": "Controllers\\User_02_Verification_Controller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAhAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "FeaturePage_01_Controller.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\FeaturePage_01_Controller.cs",
+              "RelativeDocumentMoniker": "Controllers\\FeaturePage_01_Controller.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\FeaturePage_01_Controller.cs",
+              "RelativeToolTip": "Controllers\\FeaturePage_01_Controller.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T10:04:43.087Z"
+              "WhenOpened": "2025-11-27T10:05:44.334Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": ".env.development",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\.env.development",
+              "RelativeDocumentMoniker": ".env.development",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\.env.development",
+              "RelativeToolTip": ".env.development",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-11-27T13:20:17.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": ".env.production",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\.env.production",
               "RelativeDocumentMoniker": ".env.production",
@@ -279,7 +271,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
+              "Title": "User_01_Register_Service.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\User_01_Register_Service.cs",
+              "RelativeDocumentMoniker": "Services\\User_01_Register_Service.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\User_01_Register_Service.cs",
+              "RelativeToolTip": "Services\\User_01_Register_Service.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAqwEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T07:47:27.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "User_02_Verification_Controller.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\User_02_Verification_Controller.cs",
+              "RelativeDocumentMoniker": "Controllers\\User_02_Verification_Controller.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\User_02_Verification_Controller.cs",
+              "RelativeToolTip": "Controllers\\User_02_Verification_Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T10:04:43.087Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "TenantResolutionMiddleware.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Shared\\TenantResolutionMiddleware.cs",
               "RelativeDocumentMoniker": "Shared\\TenantResolutionMiddleware.cs",
@@ -291,7 +307,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "User_01_Registration_Controller.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\User_01_Registration_Controller.cs",
               "RelativeDocumentMoniker": "Controllers\\User_01_Registration_Controller.cs",
@@ -303,7 +319,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ServiceExtensions.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Shared\\ServiceExtensions.cs",
               "RelativeDocumentMoniker": "Shared\\ServiceExtensions.cs",
@@ -315,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ParentAPI_01_CheckAllowAnonymous.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\ParentAPI_01_CheckAllowAnonymous.cs",
               "RelativeDocumentMoniker": "Services\\ParentAPI_01_CheckAllowAnonymous.cs",
@@ -324,18 +340,6 @@
               "ViewState": "AgIAABMAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-27T10:57:32.451Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "FeaturePage_01_Controller.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\FeaturePage_01_Controller.cs",
-              "RelativeDocumentMoniker": "Controllers\\FeaturePage_01_Controller.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Controllers\\FeaturePage_01_Controller.cs",
-              "RelativeToolTip": "Controllers\\FeaturePage_01_Controller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T10:05:44.334Z"
             },
             {
               "$type": "Document",
@@ -363,7 +367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ParentAPI_01_GenToken_Service.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Deployments\\Product_Config_Customer_v0\\backend\\Services\\ParentAPI_01_GenToken_Service.cs",
               "RelativeDocumentMoniker": "Services\\ParentAPI_01_GenToken_Service.cs",
